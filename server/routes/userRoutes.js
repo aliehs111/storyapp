@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
     const newUser = await User.create({ username, email, password: hashedPassword });
     res.status(201).json(newUser);
   } catch (error) {
+    console.error('Error registering user:', error);
     res.status(500).json({ error: 'Failed to register user' });
   }
 });

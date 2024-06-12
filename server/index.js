@@ -14,7 +14,7 @@ const { sequelize } = require('./models'); // Ensure models are imported to sync
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5001; // Change to 5001 or any other port
+const port = process.env.PORT || 3001; // Change to 5001 or any other port
 
 
 // MySQL connection

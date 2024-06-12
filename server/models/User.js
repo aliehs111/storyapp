@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -20,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('viewer', 'uploader', 'both'),
       defaultValue: 'viewer'
     }
+  }, {
+    timestamps: false // Disable timestamps
   });
 
   return User;
