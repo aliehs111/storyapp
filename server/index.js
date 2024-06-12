@@ -9,6 +9,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
+const videoRoutes = require('./routes/videoRoutes');
 const { sequelize } = require('./models'); // Ensure models are imported to sync with the database
 
 dotenv.config();
@@ -68,6 +69,9 @@ app.use(passport.session());
 app.use('/api/users', userRoutes);
 
 // Add more routes here
+// Use video routes
+app.use('/api/videos', videoRoutes);
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
