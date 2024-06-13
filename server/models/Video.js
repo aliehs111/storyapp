@@ -1,31 +1,43 @@
-// server/models/Video.js
+// models/Video.js
 module.exports = (sequelize, DataTypes) => {
   const Video = sequelize.define('Video', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     book_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
     file_path: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     thumbnail_path: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   });
 
   return Video;

@@ -1,24 +1,26 @@
 // server/models/Book.js
-module.exports = (sequelize, DataTypes) => {
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
   const Book = sequelize.define('Book', {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     author: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     cover_image_path: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     is_story: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
+  }, {
+    timestamps: true,
   });
 
   return Book;

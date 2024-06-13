@@ -1,29 +1,33 @@
 // server/models/User.js
-module.exports = (sequelize, DataTypes) => {
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     profile_picture: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     role: {
       type: DataTypes.ENUM('viewer', 'uploader', 'both'),
-      defaultValue: 'viewer'
-    }
+      defaultValue: 'viewer',
+    },
   }, {
-    timestamps: false // Disable timestamps
+    timestamps: true,
   });
 
   return User;
 };
+
