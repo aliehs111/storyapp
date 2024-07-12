@@ -3,7 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
-const { Video } = require('../models');
+const { Video, User } = require('../models');
 
 const router = express.Router();
 
@@ -52,6 +52,22 @@ router.post('/upload', upload.single('video'), async (req, res) => {
   } catch (error) {
     console.error('Error uploading video:', error);
     res.status(500).json({ error: 'Failed to upload video', details: error.message });
+  }
+});
+
+// GET /api/videos - Fetch all videos with associated user data
+router.get('/', async (req, res) => {
+  try {
+    const videos = await Video.findAll({
+      include: {
+        model: User,
+        attributes: ['username']
+      }
+    });
+    res.json(videos);
+  } catch (error) {
+    console.error('Error fetching videos:', error);
+    res.status(500).json({ error: 'Failed to fetch videos', details: error.message });
   }
 });
 

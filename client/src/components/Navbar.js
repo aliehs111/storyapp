@@ -1,19 +1,19 @@
 // client/src/components/Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
 
 const Navbar = () => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/register">Register</Link></li>
-        <li><Link to="/upload">Upload</Link></li>
+    <nav className="bg-blue-600 p-4">
+      <ul className="flex space-x-4">
+        <li><Link to="/" className="text-white hover:text-gray-200">Home</Link></li>
+        <li><Link to="/login" className="text-white hover:text-gray-200">Login</Link></li>
+        <li><Link to="/register" className="text-white hover:text-gray-200">Register</Link></li>
+        <li><Link to="/upload" className="text-white hover:text-gray-200">Upload</Link></li>
       </ul>
     </nav>
   );
 };
 
 export default Navbar;
+

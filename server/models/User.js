@@ -28,6 +28,13 @@ module.exports = (sequelize) => {
     timestamps: true,
   });
 
+  // Define associations
+  User.associate = (models) => {
+    User.hasMany(models.Video, {
+      foreignKey: 'user_id',
+      as: 'videos'
+    });
+  };
+
   return User;
 };
-
