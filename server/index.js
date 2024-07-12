@@ -6,7 +6,6 @@ const multer = require('multer');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const videoRoutes = require('./routes/videoRoutes');
 const { sequelize } = require('./models');
@@ -27,8 +26,6 @@ console.log(cloudinary.config());
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -73,6 +70,11 @@ const upload = multer({ storage: storage });
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/videos', videoRoutes);
+
+// Define a route for the root URL
+app.get('/', (req, res) => {
+  res.send('Welcome to the Story App!');
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

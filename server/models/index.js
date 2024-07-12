@@ -1,36 +1,35 @@
-// server/models/index.js
+const fs = require('fs');
+const path = require('path');
 const { Sequelize, DataTypes } = require('sequelize');
-const dotenv = require('dotenv');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-dotenv.config();
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: 'mysql',
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
   }
-);
-
-const User = require('./User')(sequelize, DataTypes);
-const Book = require('./Book')(sequelize, DataTypes);
-const Video = require('./Video')(sequelize, DataTypes);
-const StoryIdea = require('./StoryIdea')(sequelize, DataTypes);
-
-// Define relationships if needed
-Video.belongsTo(User, { foreignKey: 'user_id' });
-Video.belongsTo(Book, { foreignKey: 'book_id' });
-
-sequelize.sync({ force: false }).then(() => {
-  console.log('Database & tables created!');
 });
 
-module.exports = {
-  sequelize,
-  User,
-  Book,
-  Video,
-  StoryIdea,
-};
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;

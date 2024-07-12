@@ -23,5 +23,13 @@ module.exports = (sequelize) => {
     timestamps: true,
   });
 
+  Book.associate = (models) => {
+    Book.hasMany(models.Video, {
+      foreignKey: 'book_id',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
+  };
+
   return Book;
 };
