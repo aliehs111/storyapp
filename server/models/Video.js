@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    book_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Books',
-        key: 'id'
-      }
-    },
+    // book_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'Books',
+    //     key: 'id'
+    //   }
+    // },
     title: {
       type: DataTypes.STRING,
       allowNull: false

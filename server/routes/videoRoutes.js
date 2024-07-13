@@ -39,7 +39,7 @@ router.post('/upload', upload.single('video'), async (req, res) => {
 
     const video = await Video.create({
       user_id: userId,
-      book_id: bookId,
+      // book_id: bookId,
       title: title,
       description: description,
       file_path: req.file.path,

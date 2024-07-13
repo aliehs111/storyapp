@@ -9,6 +9,9 @@ import Navbar from './components/Navbar';
 import './styles.css'; // Import styles
 
 function App() {
+  React.useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
   return (
     <Router>
       <div className="App">

@@ -30,4 +30,17 @@ router.get('/logout', (req, res) => {
   });
 });
 
+//Get all users
+router.get('/users', (req, res) => {
+  User.findAll()
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((error) => {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Failed to fetch users' });
+    });
+});
+
 module.exports = router;
+

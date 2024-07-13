@@ -40,7 +40,7 @@ db.connect((err) => {
     CREATE TABLE IF NOT EXISTS videos (
       id INT AUTO_INCREMENT PRIMARY KEY,
       user_id INT,
-      book_id INT,
+   
       title VARCHAR(255) NOT NULL,
       description TEXT,
       file_path VARCHAR(255),
@@ -62,10 +62,10 @@ db.connect((err) => {
     if (err) throw err;
     console.log('Users table created or already exists');
   });
-  db.query(createBooksTable, (err, result) => {
-    if (err) throw err;
-    console.log('Books table created or already exists');
-  });
+  // db.query(createBooksTable, (err, result) => {
+  //   if (err) throw err;
+  //   console.log('Books table created or already exists');
+  // });
   db.query(createVideosTable, (err, result) => {
     if (err) throw err;
     console.log('Videos table created or already exists');

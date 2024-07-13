@@ -70,6 +70,18 @@ const upload = multer({ storage: storage });
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/videos', videoRoutes);
+// Define a route to get all users
+app.get('/api/users', (req, res) => {
+  // Query the database to get all users
+  db.query('SELECT * FROM users', (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to get users' });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 // Define a route for the root URL
 app.get('/', (req, res) => {
