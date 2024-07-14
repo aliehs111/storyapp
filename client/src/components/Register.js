@@ -5,15 +5,29 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send a POST request to the backend
-    const response = await axios.post('/api/register', { username, email, password });
-    if (response.status === 200) {
-      // Handle successful registration
-    } else {
-      // Handle errors
+    setError('');
+    setSuccess('');
+    
+    try {
+      const response = await axios.post('http://localhost:3001/api/auth/register', { username, email, password });
+      if (response.status === 201) {
+        setSuccess('User registered successfully!');
+        // Optionally, redirect to login page or clear the form
+        // window.location.href = '/login';
+      } else {
+        setError('Registration failed.');
+      }
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('An error occurred during registration.');
+      }
     }
   };
 
@@ -85,6 +99,9 @@ const Register = () => {
               />
             </div>
           </div>
+
+          {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+          {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
 
           <div>
             <button

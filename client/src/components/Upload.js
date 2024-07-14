@@ -20,7 +20,7 @@ const Upload = () => {
       const response = await axios.post('http://localhost:3001/api/videos/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': token,
+          'Authorization': `Bearer ${token}`,
         },
       });
       console.log('Video uploaded successfully', response.data);
@@ -28,7 +28,7 @@ const Upload = () => {
       setError(null); // Clear any previous errors
     } catch (error) {
       console.error('Error uploading video:', error);
-      setError(`Failed to upload video: ${error.response.data.details}`);
+      setError(`Failed to upload video: ${error.response?.data?.details || error.message}`);
       setSuccess(null); // Clear any previous success message
       // Log the full error response for debugging
       console.log('Full error response:', error.response);
