@@ -1,7 +1,4 @@
-// server/models/User.js
-const { DataTypes } = require('sequelize');
-
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
@@ -24,15 +21,12 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM('viewer', 'uploader', 'both'),
       defaultValue: 'viewer',
     },
-  }, {
-    timestamps: true,
   });
 
-  // Define associations
   User.associate = (models) => {
     User.hasMany(models.Video, {
       foreignKey: 'user_id',
-      as: 'videos'
+      as: 'videos',
     });
   };
 

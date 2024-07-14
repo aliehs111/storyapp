@@ -5,6 +5,8 @@ const Upload = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [video, setVideo] = useState(null);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,16 +16,22 @@ const Upload = () => {
     formData.append('video', video);
 
     try {
-      const response = await axios.post('/api/videos/upload', formData, {
+      const token = localStorage.getItem('token'); // Assuming token is stored in localStorage after login
+      const response = await axios.post('http://localhost:3001/api/videos/upload', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+          'Authorization': token,
+        },
       });
       console.log('Video uploaded successfully', response.data);
-      // Handle successful upload (e.g., redirect, display message, etc.)
+      setSuccess('Video uploaded successfully');
+      setError(null); // Clear any previous errors
     } catch (error) {
-      console.error('Error uploading video', error);
-      // Handle upload error
+      console.error('Error uploading video:', error);
+      setError(`Failed to upload video: ${error.response.data.details}`);
+      setSuccess(null); // Clear any previous success message
+      // Log the full error response for debugging
+      console.log('Full error response:', error.response);
     }
   };
 
@@ -34,6 +42,8 @@ const Upload = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <form onSubmit={handleSubmit} className="space-y-6">
+          {error && <div className="text-red-500">{error}</div>}
+          {success && <div className="text-green-500">{success}</div>}
           <div>
             <label htmlFor="title" className="block text-sm font-medium text-gray-900 dark:text-white">Title</label>
             <div className="mt-2">

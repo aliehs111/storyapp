@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Upload from './components/Upload';
 import Navbar from './components/Navbar';
+import AllVideos from './components/AllVideos';
 import './styles.css'; // Import styles
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/videos" element={<AllVideos />} />
         </Routes>
       </div>
     </Router>

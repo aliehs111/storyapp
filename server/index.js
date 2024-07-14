@@ -1,33 +1,30 @@
+const dotenv = require('dotenv');
+dotenv.config(); // Ensure this is at the very top
 const express = require('express');
 const session = require('express-session');
-const passport = require('passport');
+const passport = require('./config/passport');
 const mysql = require('mysql2');
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const cloudinary = require('cloudinary').v2;
-const dotenv = require('dotenv');
-const userRoutes = require('./routes/userRoutes');
-const videoRoutes = require('./routes/videoRoutes');
-const { sequelize } = require('./models');
+const cors = require('cors');
+const userRoutes = require('./routes/userRoutes'); // Correct import of userRoutes
+const videoRoutes = require('./routes/videoRoutes'); // Correct import of videoRoutes
+const authRoutes = require('./routes/authRoutes'); // Correct import of authRoutes
+require('./config/passport'); // Ensure this is required to initialize passport strategies
 
 dotenv.config();
-
-// Cloudinary configuration
-cloudinary.config({
-  secure: true,
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-// Log the configuration
-console.log(cloudinary.config());
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// CORS configuration
+app.use(cors({
+  origin: 'http://localhost:3000', // Adjust this to your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  allowedHeaders: 'Content-Type, Authorization',
+}));
 
 // MySQL connection
 const db = mysql.createConnection({
@@ -52,36 +49,15 @@ app.use(session({
 // Passport.js setup
 app.use(passport.initialize());
 app.use(passport.session());
-// require('./config/passport')(passport);
 
-// Define storage for multer using Cloudinary
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'storyapp',
-    resource_type: 'video',
-    format: async (req, file) => 'mp4', // Adjust this if needed
-    public_id: (req, file) => file.originalname.split('.')[0], // Use original file name without extension
-  },
-});
+// Use authRoutes
+app.use('/api/auth', authRoutes);
 
-const upload = multer({ storage: storage });
-
-// Routes
-app.use('/api/users', userRoutes);
+// Use videoRoutes
 app.use('/api/videos', videoRoutes);
-// Define a route to get all users
-app.get('/api/users', (req, res) => {
-  // Query the database to get all users
-  db.query('SELECT * FROM users', (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to get users' });
-    } else {
-      res.json(results);
-    }
-  });
-});
+
+// Use userRoutes
+app.use('/api/users', userRoutes);
 
 // Define a route for the root URL
 app.get('/', (req, res) => {

@@ -26,28 +26,16 @@ db.connect((err) => {
       role ENUM('viewer', 'uploader', 'both') DEFAULT 'viewer'
     );
   `;
-  const createBooksTable = `
-    CREATE TABLE IF NOT EXISTS books (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      title VARCHAR(255) NOT NULL,
-      author VARCHAR(255),
-      cover_image_path VARCHAR(255),
-      is_story BOOLEAN DEFAULT FALSE,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-  `;
   const createVideosTable = `
     CREATE TABLE IF NOT EXISTS videos (
       id INT AUTO_INCREMENT PRIMARY KEY,
       user_id INT,
-   
       title VARCHAR(255) NOT NULL,
       description TEXT,
       file_path VARCHAR(255),
       thumbnail_path VARCHAR(255),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (user_id) REFERENCES users(id),
-      FOREIGN KEY (book_id) REFERENCES books(id)
+      FOREIGN KEY (user_id) REFERENCES users(id)
     );
   `;
   const createStoryIdeasTable = `
@@ -62,10 +50,6 @@ db.connect((err) => {
     if (err) throw err;
     console.log('Users table created or already exists');
   });
-  // db.query(createBooksTable, (err, result) => {
-  //   if (err) throw err;
-  //   console.log('Books table created or already exists');
-  // });
   db.query(createVideosTable, (err, result) => {
     if (err) throw err;
     console.log('Videos table created or already exists');
@@ -82,7 +66,8 @@ db.connect((err) => {
     ('What my grandmother was like'),
     ('What life was like before children had iPads'),
     ('Things I did outside when I was a kid'),
-    ('My favorite foods');
+    ('My favorite foods')
+    ON DUPLICATE KEY UPDATE idea=VALUES(idea);
   `;
   db.query(insertStoryIdeas, (err, result) => {
     if (err) throw err;

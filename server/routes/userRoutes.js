@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+
+const secret = process.env.JWT_SECRET;
 
 // Register Route
 router.post('/register', async (req, res) => {
@@ -18,29 +20,52 @@ router.post('/register', async (req, res) => {
 });
 
 // Login Route
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.status(200).json({ message: 'Logged in successfully', user: req.user });
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
+    res.status(200).json({ message: 'Logged in successfully', token });
+  } catch (error) {
+    console.error('Error logging in user:', error);
+    res.status(500).json({ error: 'Failed to login user' });
+  }
 });
+
+// Middleware to authenticate JWT
+const authenticateJWT = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (token) {
+    jwt.verify(token, secret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
 
 // Logout Route
-router.get('/logout', (req, res) => {
-  req.logout((err) => {
-    if (err) return res.status(500).json({ error: 'Failed to logout' });
-    res.status(200).json({ message: 'Logged out successfully' });
-  });
+router.post('/logout', (req, res) => {
+  req.logout();
+  res.status(200).json({ message: 'Logged out successfully' });
 });
 
-//Get all users
-router.get('/users', (req, res) => {
-  User.findAll()
-    .then((users) => {
-      res.status(200).json(users);
-    })
-    .catch((error) => {
-      console.error('Error fetching users:', error);
-      res.status(500).json({ error: 'Failed to fetch users' });
-    });
+// Get all users (protected route)
+router.get('/', authenticateJWT, async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
 });
 
 module.exports = router;
-
