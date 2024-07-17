@@ -36,12 +36,19 @@ router.post('/upload', authenticateJWT, upload.single('video'), async (req, res)
       return res.status(400).json({ error: 'No video file uploaded' });
     }
 
+    // Generate thumbnail URL
+    const thumbnailPath = cloudinary.url(req.file.filename, {
+      resource_type: 'video',
+      transformation: [{ width: 300, height: 200, crop: 'thumb', gravity: 'center' }],
+      format: 'jpg',
+    });
+
     const video = await Video.create({
       user_id: req.user.id, // Extracted user ID from authenticated user
       title: title,
       description: description,
       file_path: req.file.path,
-      thumbnail_path: req.file.filename,
+      thumbnail_path: thumbnailPath,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -62,7 +69,6 @@ router.get('/', authenticateJWT, async (req, res) => {
         attributes: ['username', 'profile_picture'],
       },
     });
-    console.log('Fetched videos:', JSON.stringify(videos, null, 2)); // Log fetched data
     res.json(videos);
   } catch (error) {
     console.error('Error fetching videos:', error);
@@ -71,3 +77,6 @@ router.get('/', authenticateJWT, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
