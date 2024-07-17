@@ -20,7 +20,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'storyapp',
     resource_type: 'video',
-    format: async (req, file) => 'mp4',
+    format: async (req, file) => 'mp4', // Adjust if you want to allow different formats
     public_id: (req, file) => file.originalname.split('.')[0],
   },
 });
@@ -37,7 +37,7 @@ router.post('/upload', authenticateJWT, upload.single('video'), async (req, res)
     }
 
     const video = await Video.create({
-      user_id: req.user.id,
+      user_id: req.user.id, // Extracted user ID from authenticated user
       title: title,
       description: description,
       file_path: req.file.path,
@@ -62,7 +62,7 @@ router.get('/', authenticateJWT, async (req, res) => {
         attributes: ['username', 'profile_picture'],
       },
     });
-    console.log('Fetched videos:', videos); // Log fetched data for debugging
+    console.log('Fetched videos:', JSON.stringify(videos, null, 2)); // Log fetched data
     res.json(videos);
   } catch (error) {
     console.error('Error fetching videos:', error);
