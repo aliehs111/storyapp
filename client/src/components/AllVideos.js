@@ -9,7 +9,12 @@ const AllVideos = () => {
     // Fetch videos from the backend
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/videos'); // Ensure the URL is correct
+        const token = localStorage.getItem('token'); // Assuming token is stored in localStorage after login
+        const response = await axios.get('http://localhost:3001/api/videos', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         console.log('Fetched videos:', response.data); // Log fetched data
         setVideos(response.data);
       } catch (error) {
@@ -57,8 +62,8 @@ const AllVideos = () => {
                     <circle r={1} cx={1} cy={1} />
                   </svg>
                   <div className="flex gap-x-2.5">
-                    <img alt={video.user.username} src={video.user.profile_picture || 'default-profile-pic-url'} className="h-6 w-6 flex-none rounded-full bg-white/10" />
-                    {video.user.username}
+                    <img alt={video.user?.username} src={video.user?.profile_picture || 'default-profile-pic-url'} className="h-6 w-6 flex-none rounded-full bg-white/10" />
+                    {video.user?.username}
                   </div>
                 </div>
               </div>

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+// src/components/Login.js
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import AuthContext from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,10 +16,8 @@ const Login = () => {
         email,
         password,
       });
-      console.log('Login successful', response.data);
-      localStorage.setItem('token', response.data.token); // Save token to local storage
+      login(response.data.token); // Use login function from AuthContext
       setError(null); // Clear any previous errors
-      // Redirect to another page or show a success message
     } catch (error) {
       console.error('Error logging in:', error);
       setError('Failed to login. Please check your credentials and try again.');
