@@ -9,7 +9,8 @@ const AllVideos = () => {
     // Fetch videos from the backend
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('/api/videos/upload'); // Update this URL based on your backend setup
+        const response = await axios.get('http://localhost:3001/api/videos'); // Ensure the URL is correct
+        console.log('Fetched videos:', response.data); // Log fetched data
         setVideos(response.data);
       } catch (error) {
         console.error('Error fetching videos:', error);

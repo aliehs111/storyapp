@@ -39,6 +39,16 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+// Logout Route
+router.post('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to logout' });
+    }
+    res.status(200).json({ message: 'Logged out successfully' });
+  });
+});
+
 // Middleware to authenticate JWT
 const authenticateJWT = passport.authenticate('jwt', { session: false });
 
