@@ -10,8 +10,6 @@ const videoRoutes = require('./routes/videoRoutes'); // Correct import of videoR
 const authRoutes = require('./routes/authRoutes'); // Correct import of authRoutes
 require('./config/passport'); // Ensure this is required to initialize passport strategies
 
-dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 3001;
 

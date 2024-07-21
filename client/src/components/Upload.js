@@ -17,6 +17,7 @@ const Upload = () => {
 
     try {
       const token = localStorage.getItem('token'); // Assuming token is stored in localStorage after login
+      console.log('Token used for upload:', token); // Add this line for debugging
       const response = await axios.post('http://localhost:3001/api/videos/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

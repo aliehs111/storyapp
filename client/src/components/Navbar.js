@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
@@ -28,6 +27,7 @@ const Navbar = () => {
         {!isAuthenticated && <li><Link to="/register" className="text-white hover:text-gray-200">Register</Link></li>}
         {isAuthenticated && <li><Link to="/upload" className="text-white hover:text-gray-200">Upload</Link></li>}
         {isAuthenticated && <li><Link to="/videos" className="text-white hover:text-gray-200">Videos</Link></li>}
+        {isAuthenticated && <li><Link to="/meet" className="text-white hover:text-gray-200">Meet the Team</Link></li>}
         {isAuthenticated && <li><button onClick={handleLogout} className="text-white hover:text-gray-200">Logout</button></li>}
         {/* <li><button onClick={toggleDarkMode} className="text-white hover:text-gray-200">Toggle Dark Mode</button></li> */}
       </ul>

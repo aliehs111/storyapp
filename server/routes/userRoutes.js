@@ -37,10 +37,12 @@ router.post('/login', async (req, res) => {
 
 // Middleware to authenticate JWT
 const authenticateJWT = (req, res, next) => {
-  const token = req.headers.authorization;
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(' ')[1];
   if (token) {
     jwt.verify(token, secret, (err, user) => {
       if (err) {
+        console.error('JWT verification error:', err);
         return res.sendStatus(403);
       }
       req.user = user;
@@ -53,14 +55,14 @@ const authenticateJWT = (req, res, next) => {
 
 // Logout Route
 router.post('/logout', (req, res) => {
-  req.logout();
+  // Handle logout on the client-side by removing the token
   res.status(200).json({ message: 'Logged out successfully' });
 });
 
 // Get all users (protected route)
-router.get('/', authenticateJWT, async (req, res) => {
+router.get('/users', authenticateJWT, async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ attributes: ['id', 'username'] });
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
