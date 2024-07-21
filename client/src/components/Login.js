@@ -1,5 +1,5 @@
-// src/components/Login.js
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 
@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const Login = () => {
       });
       login(response.data.token); // Use login function from AuthContext
       setError(null); // Clear any previous errors
+      navigate('/'); // Redirect to the home page
     } catch (error) {
       console.error('Error logging in:', error);
       setError('Failed to login. Please check your credentials and try again.');
@@ -105,3 +107,4 @@ const Login = () => {
 };
 
 export default Login;
+

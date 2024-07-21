@@ -3,16 +3,47 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const bcrypt = require('bcryptjs');
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
 
 const router = express.Router();
 const secret = process.env.JWT_SECRET;
 
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
+
+// Define storage for multer using Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'profile_pictures',
+    format: async () => 'jpg',
+    public_id: (req, file) => file.originalname.replace(/\s+/g, '_').split('.')[0],
+  },
+});
+
+const upload = multer({ storage: storage });
+
 // Register Route
-router.post('/register', async (req, res) => {
+router.post('/register', upload.single('profilePicture'), async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ username, email, password: hashedPassword });
+    const profilePictureUrl = req.file ? req.file.path : null;
+
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+      profile_picture: profilePictureUrl,
+    });
+
     res.status(201).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
     console.error('Error registering user:', error);
@@ -64,3 +95,4 @@ router.get('/users', authenticateJWT, async (req, res) => {
 });
 
 module.exports = router;
+

@@ -5,6 +5,7 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -12,9 +13,22 @@ const Register = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
+
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    if (profilePicture) {
+      formData.append('profilePicture', profilePicture);
+    }
+
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/register', { username, email, password });
+      const response = await axios.post('http://localhost:3001/api/auth/register', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       if (response.status === 201) {
         setSuccess('User registered successfully!');
         // Optionally, redirect to login page or clear the form
@@ -96,6 +110,21 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="dark:bg-gray-800 dark:text-white block w-full rounded-md border-0 bg-white/5 py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="profilePicture" className="block text-sm font-medium leading-6">
+              Profile Picture
+            </label>
+            <div className="mt-2">
+              <input
+                id="profilePicture"
+                name="profilePicture"
+                type="file"
+                onChange={(e) => setProfilePicture(e.target.files[0])}
+                className="block w-full text-white"
               />
             </div>
           </div>
