@@ -123,6 +123,21 @@ router.get('/profile/:id', authenticateJWT, async (req, res) => {
   }
 });
 
+// Get all users (protected route)
+router.get('/all', authenticateJWT, async (req, res) => {
+  try {
+    const users = await User.findAll({
+      attributes: ['id', 'username', 'profile_picture', 'role'],
+    });
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+});
+
+
+
 module.exports = router;
 
 

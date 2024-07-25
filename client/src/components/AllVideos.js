@@ -8,6 +8,7 @@ const AllVideos = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [videoToDelete, setVideoToDelete] = useState(null);
+  const [totalSize, setTotalSize] = useState(0);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -25,8 +26,30 @@ const AllVideos = () => {
       }
     };
 
+    const fetchDataSize = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3001/api/videos/data/size', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTotalSize(response.data.totalSize);
+      } catch (error) {
+        console.error('Error fetching data size:', error);
+      }
+    };
+
     fetchVideos();
+    fetchDataSize();
   }, []);
+
+  const formatSize = (size) => {
+    if (size < 1024) return `${size} B`;
+    else if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
+    else if (size < 1024 * 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+    return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+  };
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
@@ -66,6 +89,9 @@ const AllVideos = () => {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">All Videos</h2>
           <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
             Enjoy a variety of stories and experiences shared by our community.
+          </p>
+          <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
+            Total Data Size: {formatSize(totalSize)}
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -185,4 +211,6 @@ const AllVideos = () => {
 };
 
 export default AllVideos;
+
+
 

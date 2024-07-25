@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Meet from './components/Meet';
 import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
 import ProfileForm from './components/ProfileForm';
+import AllProfiles from './components/AllProfiles';
 
 const App = () => {
   return (
@@ -24,8 +25,9 @@ const App = () => {
             <Route path="/upload" element={<Upload />} />
             <Route path="/videos" element={<AllVideos />} />
             <Route path="/meet" element={<Meet />} />
-            <Route path="/profile/:username" element={<ProfilePage />} /> {/* Add profile route */}
+            <Route path="/profile/:id" element={<ProfilePage />} /> {/* Add profile route */}
             <Route path="/profile" element={<ProfileForm />} /> {/* Add profile route*/}
+            <Route path="/storytellers" element={<AllProfiles />} /> 
           </Route>
         </Routes>
       </div>

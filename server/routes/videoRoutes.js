@@ -136,5 +136,54 @@ router.get('/users', authenticateJWT, async (req, res) => {
   }
 });
 
+// GET /api/videos/user/:userId - Fetch videos by user ID
+router.get('/user/:userId', authenticateJWT, async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const videos = await Video.findAll({
+      where: { user_id: userId },
+      include: {
+        model: User,
+        attributes: ['username', 'profile_picture'],
+      },
+    });
+    res.json(videos);
+  } catch (error) {
+    console.error('Error fetching videos:', error);
+    res.status(500).json({ error: 'Failed to fetch videos', details: error.message });
+  }
+});
+
+// Route to get total size of videos
+router.get('/data/size', authenticateJWT, async (req, res) => {
+  try {
+    // Fetch all videos from the database
+    const videos = await Video.findAll({ attributes: ['file_path'] });
+
+    // Sum up the sizes of all videos from Cloudinary
+    let totalSize = 0;
+    for (const video of videos) {
+      const filePath = video.file_path;
+      const urlSegments = filePath.split('/');
+      const publicIdWithExtension = urlSegments[urlSegments.length - 1]; // Get the last segment of the URL
+      const publicId = `storyapp/${publicIdWithExtension.split('.')[0]}`; // Add folder prefix and remove the file extension
+
+      console.log('Fetching size for public ID:', publicId); // Debug log
+
+      try {
+        const result = await cloudinary.api.resource(publicId, { resource_type: 'video' });
+        totalSize += result.bytes;
+      } catch (cloudinaryError) {
+        console.error('Cloudinary error fetching resource:', cloudinaryError.message);
+      }
+    }
+
+    res.json({ totalSize });
+  } catch (error) {
+    console.error('Error fetching total video size:', error.message);
+    res.status(500).json({ error: 'Failed to fetch total video size', details: error.message });
+  }
+});
+
 module.exports = router;
 
