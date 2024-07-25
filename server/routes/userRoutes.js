@@ -100,6 +100,29 @@ router.put('/profile/:id', authenticateJWT, upload.fields([{ name: 'profile_pict
   }
 });
 
+// Get User Profile by ID (protected route)
+router.get('/profile/:id', authenticateJWT, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id, {
+      attributes: [
+        'id', 'username', 'email', 'profile_picture', 'role', 
+        'answer_one', 'answer_two', 'answer_three', 'answer_four', 
+        'answer_five', 'answer_six'
+      ]
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    res.status(500).json({ error: 'Failed to fetch user profile' });
+  }
+});
+
 module.exports = router;
 
 
