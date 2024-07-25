@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -6,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
   const [token, setToken] = useState(localStorage.getItem('token')); // Added token state
   const [userId, setUserId] = useState(localStorage.getItem('userId'));
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -13,6 +15,20 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(!!storedToken);
     setToken(storedToken); // Set token from localStorage
     setUserId(storedUserId);
+
+    if (storedToken && storedUserId) {
+      axios.get(`http://localhost:3001/api/users/profile/${storedUserId}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
+        .then(response => {
+          setUser(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching user profile:', error);
+        });
+    }
   }, []);
 
   const login = (token, id) => {
@@ -21,6 +37,18 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(true);
     setToken(token); // Set token on login
     setUserId(id);
+
+    axios.get(`http://localhost:3001/api/users/profile/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        setUser(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching user profile:', error);
+      });
   };
 
   const logout = () => {
@@ -29,13 +57,15 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setToken(null); // Clear token on logout
     setUserId(null);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, token, login, logout, userId }}>
+    <AuthContext.Provider value={{ isAuthenticated, token, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export default AuthContext;
+
