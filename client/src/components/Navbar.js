@@ -29,6 +29,7 @@ const Navbar = () => {
         {isAuthenticated && <li><Link to="/videos" className="text-white hover:text-gray-200">Videos</Link></li>}
         {isAuthenticated && <li><Link to="/meet" className="text-white hover:text-gray-200">Kenzo & Kohji</Link></li>}
         {isAuthenticated && <li><button onClick={handleLogout} className="text-white hover:text-gray-200">Logout</button></li>}
+        {isAuthenticated && <li><Link to="/profile" className="text-white hover:text-gray-200">My Profile</Link></li>}
         {/* <li><button onClick={toggleDarkMode} className="text-white hover:text-gray-200">Toggle Dark Mode</button></li> */}
       </ul>
     </nav>

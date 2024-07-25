@@ -57,6 +57,7 @@ app.use('/api/videos', videoRoutes);
 // Use userRoutes
 app.use('/api/users', userRoutes);
 
+
 // Define a route for the root URL
 app.get('/', (req, res) => {
   res.send('Welcome to the Story App!');

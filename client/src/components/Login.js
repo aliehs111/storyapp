@@ -17,7 +17,7 @@ const Login = () => {
         email,
         password,
       });
-      login(response.data.token); // Use login function from AuthContext
+      login(response.data.token, response.data.userId); // Use login function from AuthContext
       setError(null); // Clear any previous errors
       navigate('/'); // Redirect to the home page
     } catch (error) {
@@ -107,4 +107,3 @@ const Login = () => {
 };
 
 export default Login;
-

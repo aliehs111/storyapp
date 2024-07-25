@@ -17,6 +17,34 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    artwork_picture: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_one: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_two: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_three: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_four: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_five: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    answer_six: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     role: {
       type: DataTypes.ENUM('viewer', 'uploader', 'both'),
       defaultValue: 'viewer',

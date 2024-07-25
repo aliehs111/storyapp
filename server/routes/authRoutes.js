@@ -51,23 +51,23 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
   }
 });
 
+
+module.exports = router;
+
 // Login Route (Local Strategy)
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', { session: false }, (err, user, info) => {
-    if (err || !user) {
-      return res.status(400).json({
-        message: 'Something is not right',
-        user: user
-      });
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+      return res.status(401).json({ error: 'Invalid email or password' });
     }
-    req.login(user, { session: false }, (err) => {
-      if (err) {
-        res.send(err);
-      }
-      const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
-      return res.json({ token });
-    });
-  })(req, res, next);
+    const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
+    res.status(200).json({ message: 'Logged in successfully', token, userId: user.id });
+  } catch (error) {
+    console.error('Error logging in user:', error);
+    res.status(500).json({ error: 'Failed to login user' });
+  }
 });
 
 // Logout Route

@@ -6,8 +6,10 @@ import Login from './components/Login';
 import Upload from './components/Upload';
 import AllVideos from './components/AllVideos';
 import Navbar from './components/Navbar';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute component
-import Meet from './components/Meet'; // Import the Meet component
+import ProtectedRoute from './components/ProtectedRoute';
+import Meet from './components/Meet';
+import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
+import ProfileForm from './components/ProfileForm';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
             <Route path="/upload" element={<Upload />} />
             <Route path="/videos" element={<AllVideos />} />
             <Route path="/meet" element={<Meet />} />
+            <Route path="/profile/:username" element={<ProfilePage />} /> {/* Add profile route */}
+            <Route path="/profile" element={<ProfileForm />} /> {/* Add profile route*/}
           </Route>
         </Routes>
       </div>
@@ -30,4 +34,3 @@ const App = () => {
 };
 
 export default App;
-

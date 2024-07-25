@@ -1,24 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import kenzoProfile2 from '../assets/kenzoProfile2.jpeg';
 import kohjiProfile from '../assets/kohjiProfile.jpeg';
-import { FaInstagram, FaGithub } from 'react-icons/fa'; // Import Instagram and GitHub icons
+import { FaInstagram, FaGithub } from 'react-icons/fa';
 
 const people = [
   {
     name: 'Mackenzo Kirchhoff',
     role: 'The best Kuya ever',
     imageUrl: kenzoProfile2,
-    instagramUrl: '#', // Add Instagram URL
-    githubUrl: '#', // Add GitHub URL
+    instagramUrl: '#',
+    githubUrl: '#',
+    profileUrl: '/profile/kenzo', // Add profile URL
   },
   {
     name: 'Kohji Kirchhoff',
     role: 'The best little brother ever',
     imageUrl: kohjiProfile,
-    instagramUrl: '#', // Add Instagram URL
-    githubUrl: '#', // Add GitHub URL
+    instagramUrl: '#',
+    githubUrl: '#',
+    profileUrl: '/profile/kohji', // Add profile URL
   },
-  // More people...
 ];
 
 const Meet = () => {
@@ -38,15 +40,17 @@ const Meet = () => {
           >
             {people.map((person) => (
               <li key={person.name} className="rounded-2xl bg-gray-800 px-8 py-10">
-                <div className="flex justify-center">
-                  <img
-                    alt=""
-                    src={person.imageUrl}
-                    className="h-48 w-48 rounded-full object-cover shadow-lg border-4 border-gray-800 md:h-56 md:w-56"
-                  />
-                </div>
-                <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-white">{person.name}</h3>
-                <p className="text-sm leading-6 text-gray-400">{person.role}</p>
+                <Link to={person.profileUrl} className="block">
+                  <div className="flex justify-center">
+                    <img
+                      alt=""
+                      src={person.imageUrl}
+                      className="h-48 w-48 rounded-full object-cover shadow-lg border-4 border-gray-800 md:h-56 md:w-56"
+                    />
+                  </div>
+                  <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-white">{person.name}</h3>
+                  <p className="text-sm leading-6 text-gray-400">{person.role}</p>
+                </Link>
                 <ul role="list" className="mt-6 flex justify-center gap-x-6">
                   <li>
                     <a href={person.instagramUrl} className="text-gray-400 hover:text-gray-300">

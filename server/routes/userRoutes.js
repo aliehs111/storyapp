@@ -1,39 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 const { User } = require('../models');
-
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const secret = process.env.JWT_SECRET;
 
-// Register Route
-router.post('/register', async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ username, email, password: hashedPassword });
-    res.status(201).json({ message: 'User registered successfully', user: newUser });
-  } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).json({ error: 'Failed to register user' });
-  }
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Login Route
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
-    if (!user || !bcrypt.compareSync(password, user.password)) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-    const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
-    res.status(200).json({ message: 'Logged in successfully', token });
-  } catch (error) {
-    console.error('Error logging in user:', error);
-    res.status(500).json({ error: 'Failed to login user' });
-  }
+// Configure multer storage for Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'profile_pictures',
+    format: async (req, file) => 'jpeg',
+    public_id: (req, file) => Date.now() + '-' + file.originalname,
+  },
 });
+
+const upload = multer({ storage: storage });
 
 // Middleware to authenticate JWT
 const authenticateJWT = (req, res, next) => {
@@ -53,21 +44,62 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
-// Logout Route
-router.post('/logout', (req, res) => {
-  // Handle logout on the client-side by removing the token
-  res.status(200).json({ message: 'Logged out successfully' });
-});
-
-// Get all users (protected route)
-router.get('/users', authenticateJWT, async (req, res) => {
+// Update Profile Route (protected route)
+router.put('/profile/:id', authenticateJWT, upload.fields([{ name: 'profile_picture', maxCount: 1 }, { name: 'artwork_picture', maxCount: 1 }]), async (req, res) => {
   try {
-    const users = await User.findAll({ attributes: ['id', 'username'] });
-    res.status(200).json(users);
+    const { id } = req.params;
+    if (!id) {
+      console.error('User ID is required but is missing or undefined'); // Log the error
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    const { username, email, answer_one, answer_two, answer_three, answer_four, answer_five, answer_six } = req.body;
+    const profilePictureUrl = req.files['profile_picture'] ? req.files['profile_picture'][0].path : null;
+    const artworkPictureUrl = req.files['artwork_picture'] ? req.files['artwork_picture'][0].path : null;
+
+    // Log the received values for debugging
+    console.log('ID:', id);
+    console.log('Username:', username);
+    console.log('Email:', email);
+    console.log('Profile Picture URL:', profilePictureUrl);
+    console.log('Artwork Picture URL:', artworkPictureUrl);
+    console.log('Answer One:', answer_one);
+    console.log('Answer Two:', answer_two);
+    console.log('Answer Three:', answer_three);
+    console.log('Answer Four:', answer_four);
+    console.log('Answer Five:', answer_five);
+    console.log('Answer Six:', answer_six);
+
+    let updateData = {};
+
+    if (username) updateData.username = username;
+    if (email) updateData.email = email;
+    if (profilePictureUrl) updateData.profile_picture = profilePictureUrl;
+    if (artworkPictureUrl) updateData.artwork_picture = artworkPictureUrl;
+    if (answer_one) updateData.answer_one = answer_one;
+    if (answer_two) updateData.answer_two = answer_two;
+    if (answer_three) updateData.answer_three = answer_three;
+    if (answer_four) updateData.answer_four = answer_four;
+    if (answer_five) updateData.answer_five = answer_five;
+    if (answer_six) updateData.answer_six = answer_six;
+
+    console.log('Update Data:', updateData);
+
+    const [updated] = await User.update(updateData, { where: { id } });
+
+    if (!updated) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const updatedUser = await User.findByPk(id);
+
+    res.status(200).json({ message: 'User profile updated successfully', user: updatedUser });
   } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Failed to fetch users' });
+    console.error('Error updating user profile:', error);
+    res.status(500).json({ error: 'Failed to update user profile' });
   }
 });
 
 module.exports = router;
+
+
