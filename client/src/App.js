@@ -11,6 +11,7 @@ import Meet from './components/Meet';
 import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
 import ProfileForm from './components/ProfileForm';
 import AllProfiles from './components/AllProfiles';
+import StoryTopics from './components/StoryTopics';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/profile/:id" element={<ProfilePage />} /> {/* Add profile route */}
             <Route path="/profile" element={<ProfileForm />} /> {/* Add profile route*/}
             <Route path="/storytellers" element={<AllProfiles />} /> 
+            <Route path="/storytopics" element={<StoryTopics />} />
           </Route>
         </Routes>
       </div>

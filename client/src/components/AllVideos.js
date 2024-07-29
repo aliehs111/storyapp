@@ -98,7 +98,7 @@ const AllVideos = () => {
           {videos.map((video) => (
             <article
               key={video.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-800 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
               onClick={() => handleVideoClick(video)}
             >
               <img alt={video.title} src={video.thumbnail_path} className="absolute inset-0 -z-10 h-full w-full object-cover cursor-pointer" />

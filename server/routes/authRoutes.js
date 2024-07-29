@@ -33,10 +33,20 @@ const upload = multer({ storage: storage });
 // Register Route
 router.post('/register', upload.single('profilePicture'), async (req, res) => {
   try {
+    console.log('Request body:', req.body);
+    console.log('Uploaded file:', req.file);
+
     const { username, email, password } = req.body;
+
+    // Check if all required fields are present
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const profilePictureUrl = req.file ? req.file.path : null;
 
+    // Create new user
     const newUser = await User.create({
       username,
       email,
@@ -47,12 +57,16 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
     res.status(201).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
     console.error('Error registering user:', error);
-    res.status(500).json({ error: 'Failed to register user' });
+
+    if (error.name === 'SequelizeUniqueConstraintError') {
+      res.status(409).json({ error: 'Email is already in use.' });
+    } else {
+      res.status(500).json({ error: 'Failed to register user', details: error.message });
+    }
   }
 });
 
 
-module.exports = router;
 
 // Login Route (Local Strategy)
 router.post('/login', async (req, res) => {

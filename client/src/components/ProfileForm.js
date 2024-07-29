@@ -119,7 +119,7 @@ const ProfileForm = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-900 py-24 sm:py-32">
+      <div className="bg-gray-900 py-24 px-20 sm:py-32">
         <h1 className="text-3xl font-bold text-white">Create or Update Profile</h1>
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           <div>

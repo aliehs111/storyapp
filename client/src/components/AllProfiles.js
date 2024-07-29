@@ -46,7 +46,7 @@ const AllProfiles = () => {
                     />
                   </div>
                   <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-white">{user.username}</h3>
-                  <p className="text-sm leading-6 text-gray-400">{user.role}</p>
+                  
                 </Link>
                 <ul role="list" className="mt-6 flex justify-center gap-x-6">
                   <li>

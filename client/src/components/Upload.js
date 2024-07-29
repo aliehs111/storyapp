@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const Upload = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [video, setVideo] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -11,42 +11,55 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('video', video);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("video", video);
 
     try {
-      const token = localStorage.getItem('token'); // Assuming token is stored in localStorage after login
-      console.log('Token used for upload:', token); // Add this line for debugging
-      const response = await axios.post('http://localhost:3001/api/videos/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      console.log('Video uploaded successfully', response.data);
-      setSuccess('Video uploaded successfully');
+      const token = localStorage.getItem("token"); // Assuming token is stored in localStorage after login
+      console.log("Token used for upload:", token); // Add this line for debugging
+      const response = await axios.post(
+        "http://localhost:3001/api/videos/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Video uploaded successfully", response.data);
+      setSuccess("Video uploaded successfully");
       setError(null); // Clear any previous errors
     } catch (error) {
-      console.error('Error uploading video:', error);
-      setError(`Failed to upload video: ${error.response?.data?.details || error.message}`);
+      console.error("Error uploading video:", error);
+      setError(
+        `Failed to upload video: ${
+          error.response?.data?.details || error.message
+        }`
+      );
       setSuccess(null); // Clear any previous success message
       // Log the full error response for debugging
-      console.log('Full error response:', error.response);
+      console.log("Full error response:", error.response);
     }
   };
 
   return (
-    <div className="dark:bg-gray-900 dark:text-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Upload Video</h1>
-      </div>
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="dark:bg-gray-900 dark:text-white flex min-h-full flex-1 flex-col justify-center px-4 py-6 lg:px-4">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md mt-8">
+        <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Upload Video
+        </h1>
+        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           {error && <div className="text-red-500">{error}</div>}
           {success && <div className="text-green-500">{success}</div>}
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-900 dark:text-white">Title</label>
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Title
+            </label>
             <div className="mt-2">
               <input
                 id="title"
@@ -60,7 +73,12 @@ const Upload = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Description
+            </label>
             <div className="mt-2">
               <textarea
                 id="description"
@@ -73,7 +91,12 @@ const Upload = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="video" className="block text-sm font-medium text-gray-900 dark:text-white">Video</label>
+            <label
+              htmlFor="video"
+              className="block text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Video
+            </label>
             <div className="mt-2">
               <input
                 id="video"

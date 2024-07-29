@@ -61,6 +61,12 @@ const Navbar = () => {
                         Upload
                       </Link>
                       <Link
+                      to="/storytopics"
+                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
+                      >
+                        Story Topics
+                      </Link>
+                      <Link
                         to="/videos"
                         className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                       >
@@ -93,7 +99,7 @@ const Navbar = () => {
                   <>
                     <button
                       type="button"
-                      className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-700 focus:ring-offset-2"
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
@@ -103,7 +109,7 @@ const Navbar = () => {
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
-                        <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-700 focus:ring-offset-2">
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">Open user menu</span>
                           <img
@@ -123,7 +129,7 @@ const Navbar = () => {
                                 'block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
-                              Your Profile
+                              My Profile
                             </Link>
                           )}
                         </Menu.Item>
@@ -132,7 +138,7 @@ const Navbar = () => {
                             <button
                               onClick={handleLogout}
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
+                                active ? 'bg-purple-700' : 'bg-pink-400',
                                 'block w-full text-left px-4 py-2 text-sm text-gray-700'
                               )}
                             >

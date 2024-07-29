@@ -30,7 +30,7 @@ const Meet = () => {
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Kenzo and Kohji</h2>
           <p className="mt-4 text-lg leading-8 text-gray-400">
-            Profiles of the two awesome brothers who want to hear your stories!
+            Profiles of the two awesome brothers who want to hear your stories!  Their profiles are not yet complete in this beta release.  Here are some ideas for stories to tell.  Tell them about your first day of school, how you learned to read, or your favorite activity when you were their age.  Or maybe read them a book!
           </p>
         </div>
         <div className="flex justify-center mt-20">
