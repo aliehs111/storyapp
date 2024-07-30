@@ -51,6 +51,12 @@ const faqs = [
       answer:
         "Did you lose your keys today just to find them in your pocket?  Did you bump into someone at the grocery store?  Did your pet do something funny?  Kenzo and Kohji love a good laugh!!",
     },
+    {
+        id: 9,
+        question: "Take the boys for a virtual walk!",
+        answer:
+          "Are you taking your pet for a walk?  Maybe you're going to the mall or the grocery store.  Show he boys a little bit of your environment so they can see what you're up to!",
+      },
 
   ]
   

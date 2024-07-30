@@ -33,10 +33,10 @@ const AllProfiles = () => {
             Meet the storytellers who are sharing their amazing stories!
           </p>
         </div>
-        <div className="flex justify-center mt-20">
-          <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 overflow-x-auto">
+          <ul role="list" className="flex gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:flex-none">
             {users.map((user) => (
-              <li key={user.id} className="rounded-2xl bg-gray-800 px-8 py-10">
+              <li key={user.id} className="rounded-2xl bg-gray-800 px-8 py-10 flex-none">
                 <Link to={`/profile/${user.id}`} className="block">
                   <div className="flex justify-center">
                     <img
@@ -46,7 +46,6 @@ const AllProfiles = () => {
                     />
                   </div>
                   <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-white">{user.username}</h3>
-                  
                 </Link>
                 <ul role="list" className="mt-6 flex justify-center gap-x-6">
                   <li>

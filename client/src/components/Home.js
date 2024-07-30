@@ -22,8 +22,8 @@ const Home = () => {
               anytime and as many times as you like and share a story or a
               thought with them.
             </p>
-            <p className="mt-4 text-lg leading-6 text-pink-200 !text-pink-200 dark:text-pink-50 !dark:text-pink-50 italic">
-  This app is in testing and any and all feedback is greatly appreciated! Please email questions, comments, ideas for new features to&nbsp;
+            <p className="mt-4 text-lg leading-4 text-pink-400 !text-pink-700 dark:text-pink-700 !dark:text-pink-700 italic">
+  Thank you for testing this app and I hope we will all have fun with this!  There will be bugs and things that need improvement.  Any and all feedback is greatly appreciated! Please email questions, comments, ideas for new features to&nbsp;
   <a href="mailto:smcgov11.11@gmail.com" className="underline">
     smcgov11.11@gmail.com
   </a>.
