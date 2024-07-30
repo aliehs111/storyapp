@@ -59,7 +59,7 @@ const ProfileForm = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:3001/api/users/profile/${user.id}`, updateFormData, {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/users/profile/${user.id}`, updateFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

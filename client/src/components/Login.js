@@ -13,10 +13,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         email,
         password,
       });
+      
       login(response.data.token, response.data.userId); // Use login function from AuthContext
       setError(null); // Clear any previous errors
       navigate('/'); // Redirect to the home page

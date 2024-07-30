@@ -10,7 +10,7 @@ const AllProfiles = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3001/api/users/all', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/profiles`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -15,7 +15,7 @@ const AllVideos = () => {
       try {
         const token = localStorage.getItem('token');
         console.log("Token used for fetching videos:", token); // Log the token
-        const response = await axios.get('http://localhost:3001/api/videos', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -29,7 +29,7 @@ const AllVideos = () => {
     const fetchDataSize = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3001/api/videos/data/size', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos/data/size`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,7 +69,7 @@ const AllVideos = () => {
     try {
       const token = localStorage.getItem('token');
       console.log("Token used for deleting video:", token); // Log the token
-      await axios.delete(`http://localhost:3001/api/videos/${videoToDelete.id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/videos/${videoToDelete.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -98,7 +98,7 @@ const AllVideos = () => {
           {videos.map((video) => (
             <article
               key={video.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-800 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-00 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
               onClick={() => handleVideoClick(video)}
             >
               <img alt={video.title} src={video.thumbnail_path} className="absolute inset-0 -z-10 h-full w-full object-cover cursor-pointer" />
