@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     setUserId(storedUserId);
 
     if (storedToken && storedUserId) {
-      axios.get(`http://localhost:3001/api/users/profile/${storedUserId}`, {
+      axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${storedUserId}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     setToken(token); // Set token on login
     setUserId(id);
 
-    axios.get(`http://localhost:3001/api/users/profile/${id}`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

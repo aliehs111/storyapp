@@ -18,7 +18,7 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000', // Adjust this to your frontend URL
+  origin: process.env.CORS_ORIGIN || `https://${process.env.REACT_APP_HOST}`, // Adjust this to your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: 'Content-Type, Authorization',

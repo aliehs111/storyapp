@@ -13,7 +13,7 @@ const ProfilePage = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:3001/api/users/profile/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -28,7 +28,7 @@ const ProfilePage = () => {
     const fetchVideos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
