@@ -3,6 +3,7 @@ dotenv.config(); // Ensure this is at the very top
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
+const path = require('path');
 const passport = require('./config/passport');
 const sequelize = require('./config/database'); // Ensure this is your Sequelize instance
 const userRoutes = require('./routes/userRoutes'); // Correct import of userRoutes
@@ -42,6 +43,14 @@ app.use('/api/videos', videoRoutes);
 
 // Use userRoutes
 app.use('/api/users', userRoutes);
+
+// Serve static files from the React app build
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
 // Define a route for the root URL
 app.get('/', (req, res) => {
