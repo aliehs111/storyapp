@@ -9,6 +9,7 @@ const sequelize = require('./config/database'); // Ensure this is your Sequelize
 const userRoutes = require('./routes/userRoutes'); // Correct import of userRoutes
 const videoRoutes = require('./routes/videoRoutes'); // Correct import of videoRoutes
 const authRoutes = require('./routes/authRoutes'); // Correct import of authRoutes
+const testRoutes = require('./routes/testRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
