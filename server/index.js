@@ -17,20 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // CORS configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  `https://${process.env.REACT_APP_HOST}`
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
+  origin: process.env.CORS_ORIGIN || `https://${process.env.REACT_APP_HOST}`, // Adjust this to your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: 'Content-Type, Authorization',
