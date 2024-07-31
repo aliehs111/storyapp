@@ -66,8 +66,6 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
   }
 });
 
-
-
 // Login Route (Local Strategy)
 router.post('/login', async (req, res) => {
   try {
@@ -109,4 +107,3 @@ router.get('/users', authenticateJWT, async (req, res) => {
 });
 
 module.exports = router;
-
