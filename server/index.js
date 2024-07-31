@@ -17,13 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // CORS configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://storyapp-keko-338527e2d9b3.herokuapp.com',
-];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: process.env.CORS_ORIGIN, // Adjust this to your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: 'Content-Type, Authorization',
