@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Register = () => {
@@ -8,6 +8,10 @@ const Register = () => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    console.log('API URL:', process.env.REACT_APP_API_URL); // Debug log to check the API URL
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
