@@ -9,17 +9,22 @@ const sequelize = require('./config/database'); // Ensure this is your Sequelize
 const userRoutes = require('./routes/userRoutes'); // Correct import of userRoutes
 const videoRoutes = require('./routes/videoRoutes'); // Correct import of videoRoutes
 const authRoutes = require('./routes/authRoutes'); // Correct import of authRoutes
-const testRoutes = require('./routes/testRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
+
+console.log('Environment variables:');
+console.log('JAWSDB_URL:', process.env.JAWSDB_URL);
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_NAME:', process.env.DB_NAME);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN, // Adjust this to your frontend URL
+  origin: process.env.CORS_ORIGIN || `https://${process.env.REACT_APP_HOST}`, // Adjust this to your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: 'Content-Type, Authorization',
