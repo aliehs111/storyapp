@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
 });
 
 // Connect to the database and start the server
-sequelize.sync().then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });

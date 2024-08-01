@@ -3,15 +3,16 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// MySQL connection
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
+console.log('Environment:', process.env.NODE_ENV);
 console.log('DB_HOST:', process.env.DB_HOST);
 console.log('DB_USER:', process.env.DB_USER);
+
+const db = mysql.createConnection({
+  host: process.env.NODE_ENV === 'production' ? process.env.JAWSDB_URL : process.env.DB_HOST,
+  user: process.env.NODE_ENV === 'production' ? undefined : process.env.DB_USER,
+  password: process.env.NODE_ENV === 'production' ? undefined : process.env.DB_PASSWORD,
+  database: process.env.NODE_ENV === 'production' ? undefined : process.env.DB_NAME,
+});
 
 db.connect((err) => {
   if (err) throw err;
