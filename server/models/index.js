@@ -9,6 +9,7 @@ const db = {};
 // Initialize Sequelize instance
 let sequelize;
 if (config.use_env_variable) {
+  // Ensure the environment variable is correctly configured
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);

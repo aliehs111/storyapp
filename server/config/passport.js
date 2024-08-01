@@ -5,6 +5,7 @@ const { User } = require('../models');
 const bcrypt = require('bcryptjs');
 
 const secret = process.env.JWT_SECRET;
+console.log('JWT Secret:', secret); // Debug: check if the secret is loaded
 
 // Local Strategy
 passport.use(new LocalStrategy({

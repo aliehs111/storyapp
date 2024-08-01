@@ -1,5 +1,12 @@
 const dotenv = require('dotenv');
-dotenv.config(); // Ensure this is at the very top
+
+// Load environment variables based on the environment
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: '.env' });
+} else {
+  dotenv.config({ path: 'local.env' });
+}
+
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
@@ -24,7 +31,7 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || `https://${process.env.REACT_APP_HOST}`, // Adjust this to your frontend URL
+  origin: process.env.CORS_ORIGIN, // Set this variable to either localhost or your production URL depending on the environment
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: 'Content-Type, Authorization',
