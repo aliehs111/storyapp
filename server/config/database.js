@@ -13,18 +13,36 @@ const databaseConfig = isProduction ? process.env.JAWSDB_URL : {
   password: process.env.DB_PASSWORD,
   host: process.env.DB_HOST,
   dialect: 'mysql',
+  pool: {
+    max: 5,    // Maximum number of connection in pool
+    min: 0,    // Minimum number of connection in pool
+    acquire: 30000, // Maximum time, in ms, that pool will try to get connection before throwing error
+    idle: 10000  // Maximum time, in ms, that a connection can be idle before being released
+  }
 };
 
 console.log('Using database configuration:', isProduction ? 'JAWSDB_URL' : 'Local MySQL');
 
 // Initialize Sequelize instance based on environment
 const sequelize = isProduction
-  ? new Sequelize(databaseConfig)
+  ? new Sequelize(databaseConfig, {
+      pool: {
+        max: 5,    // Maximum number of connections in pool
+        min: 0,    // Minimum number of connections in pool
+        acquire: 30000, // Maximum time, in ms, that pool will try to get connection before throwing error
+        idle: 10000  // Maximum time, in ms, that a connection can be idle before being released
+      }
+    })
   : new Sequelize(databaseConfig.database, databaseConfig.username, databaseConfig.password, {
       host: databaseConfig.host,
       dialect: databaseConfig.dialect,
+      pool: {
+        max: 5,    // Maximum number of connections in pool
+        min: 0,    // Minimum number of connections in pool
+        acquire: 30000, // Maximum time, in ms, that pool will try to get connection before throwing error
+        idle: 10000  // Maximum time, in ms, that a connection can be idle before being released
+      }
     });
-
 // Test database connection
 sequelize
   .authenticate()
