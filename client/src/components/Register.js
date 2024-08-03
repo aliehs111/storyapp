@@ -27,6 +27,7 @@ const Register = () => {
     }
 
     try {
+      // Ensure the URL is correctly constructed
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

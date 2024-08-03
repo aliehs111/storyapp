@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 if (process.env.NODE_ENV === 'production') {
   dotenv.config({ path: '.env' });
 } else {
-  dotenv.config({ path: 'local.env' });
+  dotenv.config({ path: '.env.local' });
 }
 
 const express = require('express');
