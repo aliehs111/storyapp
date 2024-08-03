@@ -127,7 +127,7 @@ router.get('/profile/:id', authenticateJWT, async (req, res) => {
 router.get('/all', authenticateJWT, async (req, res) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'username', 'profile_picture', 'role'],
+      attributes: ['id', 'username', 'profile_picture'],
     });
     res.status(200).json(users);
   } catch (error) {

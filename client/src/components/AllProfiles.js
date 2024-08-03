@@ -10,11 +10,12 @@ const AllProfiles = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/profiles`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log('Response:', response);
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);

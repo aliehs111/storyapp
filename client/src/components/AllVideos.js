@@ -17,8 +17,8 @@ const AllVideos = () => {
         console.log("Token used for fetching videos:", token); // Log the token
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`, {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setVideos(response.data);
       } catch (error) {
@@ -46,8 +46,8 @@ const AllVideos = () => {
 
   const formatSize = (size) => {
     if (size < 1024) return `${size} B`;
-    else if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
-    else if (size < 1024 * 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+    if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
+    if (size < 1024 * 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`;
     return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
   };
 
@@ -71,8 +71,8 @@ const AllVideos = () => {
       console.log("Token used for deleting video:", token); // Log the token
       await axios.delete(`${process.env.REACT_APP_API_URL}/videos/${videoToDelete.id}`, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setVideos(videos.filter(video => video.id !== videoToDelete.id));
       setShowDeleteModal(false);
@@ -136,7 +136,7 @@ const AllVideos = () => {
                   </button>
                   <a
                     href={video.file_path}
-                    download
+                    download // Add download attribute to ensure download action
                     className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                   >
                     Download
@@ -211,6 +211,3 @@ const AllVideos = () => {
 };
 
 export default AllVideos;
-
-
-
