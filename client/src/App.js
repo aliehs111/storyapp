@@ -13,6 +13,7 @@ import ProfilePage from './components/ProfilePage'; // Import the ProfilePage co
 import ProfileForm from './components/ProfileForm';
 import AllProfiles from './components/AllProfiles';
 import StoryTopics from './components/StoryTopics';
+import LearnMore from './components/LearnMore';
 import Footer from './components/Footer'; // Import Footer component
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="learn" element={<LearnMore />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/upload" element={<Upload />} />
               <Route path="/videos" element={<AllVideos />} />

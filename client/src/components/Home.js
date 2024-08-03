@@ -25,16 +25,18 @@ const Home = () => {
               anytime and as many times as you like and share a story or a
               thought with them.
             </p>
-            <p className="mt-4 text-lg leading-4 text-green-400 !text-green-400 dark:text-green-400 !dark:text-green-400 italic">
-              Thank you for testing this app and I hope we will all have fun
-              with this! There will be bugs and things that need improvement.
-              Any and all feedback is greatly appreciated! Please email
-              questions, comments, ideas for new features to&nbsp;
-              <a href="mailto:smcgov11.11@gmail.com" className="underline">
-                smcgov11.11@gmail.com
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <a
+                href="#"
+                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+              >
+                Get started
               </a>
-              .
-            </p>
+              <a href="learn" className="text-sm font-semibold leading-6 text-white">
+                Learn more <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          
 
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center">
               <div className="relative overflow-hidden rounded-lg shadow-lg">
