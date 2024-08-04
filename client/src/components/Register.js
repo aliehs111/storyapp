@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import StoryApp from '../assets/StoryApp.png'
+
+const logo = StoryApp 
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -55,8 +58,8 @@ const Register = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-          className="mx-auto h-10 w-auto"
+          src={logo}
+          className="mx-auto h-10 w-auto h-20 w-20"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
           Create a new account
@@ -121,7 +124,7 @@ const Register = () => {
 
           <div>
             <label htmlFor="profilePicture" className="block text-sm font-medium leading-6">
-              Profile Picture
+              Profile Picture (You can also set this up later.  After you register, you will see a link to "My Profile")
             </label>
             <div className="mt-2">
               <input

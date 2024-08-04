@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import kenzoProfile from '../assets/kenzoProfile.jpeg';
+import kohjihike from '../assets/kohjihike.jpeg';
+import kekozamboni from '../assets/kekozamboni.jpeg';
+import kenzocoffeeshop from '../assets/kenzocoffeeshop.jpeg';
+
+import kenzopool from '../assets/kenzopool.jpeg';
+import kohjimustache from '../assets/kohjimustache.jpeg';
+
+
+const bgImage = kenzoProfile;
+const img1 = kohjihike;
+const img2 = kekozamboni;
+const img3 = kenzocoffeeshop;
+const img4 = kenzopool;
+const img5 = kohjimustache;
+
+
+
 
 const faqs = [
     {
@@ -78,6 +96,56 @@ const faqs = [
           </dl>
         </div>
       </div>
+
+<div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                  <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                    <div className="relative">
+                      <img
+                        alt=""
+                        src={img1}
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                    </div>
+                  </div>
+                  <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                    <div className="relative">
+                      <img
+                        alt=""
+                        src={img2}
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                    </div>
+                    <div className="relative">
+                      <img
+                        alt=""
+                        src={img3}
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                    </div>
+                  </div>
+                  <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                    <div className="relative">
+                      <img
+                        alt=""
+                        src={img4}
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                    </div>
+                    <div className="relative">
+                      <img
+                        alt=""
+                        src={img5}
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                    </div>
+                  </div>
+                </div>
+
     </div>
     </div>
   )

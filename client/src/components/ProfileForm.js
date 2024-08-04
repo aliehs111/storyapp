@@ -99,28 +99,28 @@ const ProfileForm = () => {
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">{user.username}</h2>
           <div className="mt-6 text-lg leading-8 text-gray-400">
             {user.answer_one && (
-              <p>{user.username} likes {user.answer_one}</p>
+              <p>I am {user.username} and I like {user.answer_one}</p>
             )}
             {user.answer_two && (
-              <p>And is most happy when {user.answer_two}</p>
+              <p>I am most happy when {user.answer_two}</p>
             )}
             {user.answer_three && (
-              <p>For {user.username}, stories are {user.answer_three}</p>
+              <p>According to {user.username} when hearing stories {user.answer_three}</p>
             )}
             {user.answer_four && (
-              <p>And some favorite books are {user.answer_four}</p>
+              <p>Some of my favorite books are {user.answer_four}</p>
             )}
             {user.answer_five && (
               <p>In {user.username}'s opinion the world is {user.answer_five}</p>
             )}
             {user.answer_six && (
-              <p>And favorite foods are {user.answer_six}</p>
+              <p>My favorite foods are {user.answer_six}</p>
             )}
           </div>
         </div>
       </div>
       <div className="bg-gray-900 py-24 px-20 sm:py-32">
-        <h1 className="text-3xl font-bold text-white">Create or Update Profile</h1>
+        <h1 className="text-3xl font-bold text-white">Update Profile</h1>
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">Username</label>
@@ -165,7 +165,7 @@ const ProfileForm = () => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="artwork_picture" className="block text-sm font-medium leading-6 text-white">Artwork Picture</label>
             <div className="mt-2">
               <input
@@ -176,7 +176,7 @@ const ProfileForm = () => {
                 className="block w-full text-white"
               />
             </div>
-          </div>
+          </div> */}
 
           <div>
             <label htmlFor="answer_one" className="block text-sm font-medium leading-6 text-white">What are some things you like to do?</label>

@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { Disclosure, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, BellIcon } from '@heroicons/react/24/outline';
 import AuthContext from '../context/AuthContext';
+import StoryApp from '../assets/StoryApp.png';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
+
+const logo = StoryApp
 
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useContext(AuthContext);
@@ -16,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <Disclosure as="nav" className="bg-blue-600">
+    <Disclosure as="nav" className="bg-green-600">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,8 +28,8 @@ const Navbar = () => {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     alt="Your Company"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    className="h-8 w-auto"
+                    src={logo}
+                    className="h-20 w-20"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

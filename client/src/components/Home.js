@@ -16,18 +16,16 @@ const Home = () => {
               Kohji!
             </h2>
 
-            <p className="mt-4 text-lg leading-6 text-gray-600 dark:text-gray-300">
-              From videos you already have created on your device, you can upload videos for Kenzo and Kohji to enjoy and save for years to come.  You could read
-              them a book or just tell them a story about your life, about your
-              day or any topic you would like to share with them! If you have
+            <p className="mt-2 text-lg leading-6 text-gray-600 dark:text-gray-300">
+              From videos you already have created on your device, you can upload videos for Kenzo and Kohji to enjoy and save for years to come.  If you have
               just been invited to their story app, please register and upload
               your first video! If you have already registered, please sign in
               anytime and as many times as you like and share a story or a
-              thought with them.
+              thought with them.  Once you are registered and logged in, you will see a link for Story Topics to give you some ideas.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="register"
                 className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
               >
                 Get started

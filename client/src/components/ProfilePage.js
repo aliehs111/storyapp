@@ -28,7 +28,7 @@ const ProfilePage = () => {
     const fetchVideos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos/user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
