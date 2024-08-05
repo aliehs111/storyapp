@@ -214,10 +214,18 @@ const Navbar = () => {
         </Disclosure.Button>
         <Disclosure.Button
           as={Link}
+          to="/storytopics"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Story Topics
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
           to="/videos"
           className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
         >
           Videos
+          
         </Disclosure.Button>
         <Disclosure.Button
           as={Link}
