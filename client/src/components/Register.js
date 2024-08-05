@@ -141,7 +141,7 @@ const Register = () => {
           {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
 <div>
   <p>
-  After you register, you will ne able to add or change your profile picture.  You don't have to set the profile picture to register.  Keep in mind that it will be nicer for the kids to see your profile picture.
+  After you register, you will be able to add or change your profile picture.  You don't have to set the profile picture to register.  Keep in mind that it will be nicer for the kids to see your profile picture.
   </p>
 </div>
           <div>
