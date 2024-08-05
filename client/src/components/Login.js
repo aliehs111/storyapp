@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 
+import StoryApp from '../assets/StoryApp.png'
+
+const logo = StoryApp 
+
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,11 +35,12 @@ const Login = () => {
   return (
     <div className="dark:bg-gray-900 dark:text-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
+      <img
           alt="Your Company"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-          className="mx-auto h-10 w-auto"
+          src={logo}
+          className="mx-auto h-10 w-auto h-20 w-20"
         />
+    
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
           Sign in to your account
         </h2>
@@ -96,12 +102,7 @@ const Login = () => {
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-gray-400 dark:text-gray-500">
-          Not a member?{' '}
-          <a href="#" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
-            Start a 14 day free trial
-          </a>
-        </p>
+        
       </div>
     </div>
   );

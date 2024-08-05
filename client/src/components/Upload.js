@@ -58,7 +58,7 @@ const Upload = () => {
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md mt-8">
-        <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-700 dark:text-white">
           Upload Video
         </h1>
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
@@ -67,7 +67,7 @@ const Upload = () => {
           <div>
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-900 dark:text-white"
+              className="block text-sm font-medium text-gray-700 dark:text-white"
             >
               Title
             </label>

@@ -124,7 +124,7 @@ const Register = () => {
 
           <div>
             <label htmlFor="profilePicture" className="block text-sm font-medium leading-6">
-              Profile Picture (You can also set this up later.  After you register, you will see a link to "My Profile")
+              Profile Picture 
             </label>
             <div className="mt-2">
               <input
@@ -139,7 +139,11 @@ const Register = () => {
 
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
           {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
-
+<div>
+  <p>
+  After you register, you will ne able to add or change your profile picture.  You don't have to set the profile picture to register.  Keep in mind that it will be nicer for the kids to see your profile picture.
+  </p>
+</div>
           <div>
             <button
               type="submit"

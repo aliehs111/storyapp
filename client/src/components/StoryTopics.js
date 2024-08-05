@@ -73,7 +73,7 @@ const faqs = [
         id: 9,
         question: "Take the boys for a virtual walk!",
         answer:
-          "Are you taking your pet for a walk?  Maybe you're going to the mall or the grocery store.  Show he boys a little bit of your environment so they can see what you're up to!",
+          "Are you taking your pet for a walk?  Maybe you're going to the mall or the grocery store.  Show the boys a little bit of your environment so they can see what you're up to!",
       },
 
   ]

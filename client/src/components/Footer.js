@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-pink-400 py-4 text-center">
+    <footer className="bg-teal-600 text-pink-300 py-4 text-center">
       This app is made with love for Kenzo and Kohji!
     </footer>
   );

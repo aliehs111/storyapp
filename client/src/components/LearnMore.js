@@ -16,11 +16,7 @@ const bgImage = kenzoProfile;
 
 const wideImage = kekohike;
 
-const stats = [
-  { label: "Transactions every 24 hours", value: "44 million" },
-  { label: "Assets under holding", value: "$119 trillion" },
-  { label: "New users annually", value: "46,000" },
-];
+
 const values = [
   {
     name: "Stories are a communal currency of humanity.",
@@ -50,9 +46,38 @@ const values = [
 
 const faqs = [
   {
-    question: "What's the best thing about Switzerland?",
+    question: "Who will see my videos?",
     answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "The targeted audience is of course Kenzo and Kohji, but the videos will be stored in a secure database and only accessible to registered users of this app.  In future development, there may be more features to index the videos in such a way that only certain users can see them.  Don't be shy about it.  Consider it a community of people brought together through our love for Kenzo and Kohji and let's all get to know each other better!",
+  },
+  {
+    question: "Can I delete my videos?",
+    answer:
+      "Yes, you can delete your videos.  Only the user who uploaded the video has permission to delete their own video.   In future development, there will be admistrative users who can manage the database of videos and users.",
+  },
+  {
+    question: "Can anyone download the videos?",
+    answer:
+      "Not with this current beta version.  In future development, there will be more features to download the videos and delete them from this platform so to save space in the database for future videos.  You may notice there is a button to download the videos but it's not working on all devices yet.  You can try it if you like.",
+  },{
+    question: "I have an idea to make this app better.  How can I suggest improvements and new features?",
+    answer:
+      "Thank you! Please email me at smcgov@11.11@gmail.com with your ideas and suggestions.  I would love to hear from you!  When you contact me about any technical issues, please include which browser, device type and any other technical details of how you are accessing the app.  It should be working on computers, tablets and phones, Mac, Windows, Android and iOS.",
+  },
+  {
+    question: "I have a potential user who is not comfortable with the tech involved here.  Can I create a separate profile for them?",
+    answer:
+      "Of course!  As long as you have their permission.  You can log in and out of the app as different users.  We may have the best and most interesting contributions from the less tech savy!  And you can also share a special guest video on your own profile.",
+  },
+  {
+    question: "I'd like to speak to the boys in Tagalog or another language other than English.  Would that be okay?",
+    answer:
+      "Please do!  In fact, it's exactly the intent of the app to enrich them with their family culture and history.  You can speak in any language you like.  If you are comfortable, you can also include a translation in the video description.",
+  },
+  {
+    question: "I know another family who would like their own StoryApp.  How can I get this app for another other people?",
+    answer:
+      "Working on it!  And you're part of the plan helping with this beta version to test and improve the app.  There will be similar versions for sligtly different circumstances, such as people who are who are in the hospital or nursing home.  The app will be customized for the needs of the users.  There will also be a special occassion limited version coming soon!",
   },
   // More questions...
 ];
@@ -119,46 +144,24 @@ export default function LearnMore() {
             <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 {/* Centering the text */}
-                <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl text-center mx-auto pt-8 text-slate-300 text-opacity-75">
+                <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl text-center mx-auto pt-10 text-slate-300 text-opacity-60">
                   <h1 className="text-4xl font-bold tracking-tight sm:text-3xl">
                     You are a child of the universe, no less than the trees and
                     the stars; you have a right to be here.
                   </h1>
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-400 sm:text-xl">
+                  <h3 className="text-xl tracking-tight text-right text-slate-400 sm:text-xl text-opacity-70">
                     {" "}
-                    -- Desiderata, Max Ehrmann{" "}
+                    -- Desiderata, Max Ehrmann
                   </h3>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                    It has been scientifically proven that children who have
-                    their family and loved ones verbally tell them stories have
-                    better self-esteem, are more resilient, and have a better
-                    sense of their self and how they view the world. There are
-                    even studies of a childrens' brains while being told a story
-                    as the brain works to conjure up the the imagery and think
-                    about the feelings of the storyteller's and other
-                    characters.
+                  It has been scientifically proven that children who are verbally told stories have higher self-esteem, are more resilient, and have a better understanding of themselves and how they view the world. Studies have even shown that when children listen to stories, their brains actively work to conjure up imagery and consider the emotions of the storyteller and other characters.
                   </p>
                     <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                      In modern life when children are separated from extended
-                      family, children can miss out on their own family's
-                      historical culture. An it's not about the the notable
-                      fantastic tales, it's the day-to-day lives, the seemingly
-                      inconsequential aspects of day-to-day living and sharing
-                      our thoughts with a child that help them really understand
-                      where they came from and the values of their family. They
-                      need to see their heros in life are just as human, just as
-                      falable as they are.
+                    In modern life, children often become separated from extended family and friends, missing out on their family's historical and cultural context. The seemingly inconsequential aspects of day-to-day living and sharing thoughts with a child help them truly understand where they come from and the values of their family.
                     </p>
                  
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                    Why StoryApp? While the needs of human children have not
-                    changed, the way the modern world communicates with them
-                    has. StoryApp is a way to bridge the gap between the old and
-                    the new. It is a way to connect with Kenzo and Kohji in a
-                    way that is meaningful and lasting. It is a way to share
-                    your stories with them in a way that is safe and secure. It
-                    is a way to create a legacy of love and connection that will
-                    last a lifetime.
+                  Why StoryApp? While the needs of children have not changed, the way the modern world communicates with them has. StoryApp is a way to bridge the gap between the old and the new. It offers a meaningful and lasting way to connect with Kenzo and Kohji by creating a digital treasure chest of stories and thoughts that they can access anytime and eventually share with their own children.
                   </p>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
                     Thank you for testing this app and I hope we will all have
@@ -228,11 +231,23 @@ export default function LearnMore() {
         </div>
 
         {/* Values section */}
-        <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-40 lg:px-8">
+        <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Tell them a Story!
+              C'mon! What are you waiting for? Tell them a Story!
             </h2>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <a
+                href="register"
+                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+              >
+                Get started
+              </a>
+              <a href="storytopics" className="text-sm font-semibold leading-6 text-black">
+                Story Ideas <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          
             <p className="mt-6 text-lg leading-8 text-gray-600">
               It doesn't have to be an exciting story, just anything about your day, or a memory of your grandparents, or about your pets or your recent trip to the grocery store.  The point is that the boys know you took the time and shared a piece of your life, whether that is the mundane or the fantastic.  Be sure to check out the story ideas page if you need some inspiration.
             </p>

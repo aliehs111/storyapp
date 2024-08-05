@@ -6,10 +6,10 @@ import KohjiImage from "../assets/KOHJI.jpeg"; // Ensure the path and extension 
 
 const Home = () => {
   return (
-    <div className="dark:bg-gray-900 dark:text-white py-34 sm:py-20">
-      <div className="relative bg-white dark:bg-gray-900 overflow-hidden">
+    <div className="dark:bg-gray-800 dark:text-white py-34 sm:py-20">
+      <div className="relative bg-white dark:bg-gray-800 overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative z-10 bg-white dark:bg-gray-900 lg:max-w-4xl lg:mx-auto text-center py-16">
+          <div className="relative z-10 bg-white dark:bg-gray-800 lg:max-w-4xl lg:mx-auto text-center py-16">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Welcome to StoryApp{" "}
               <span className="text-yellow-500 italic">Beta</span> for Kenzo and
