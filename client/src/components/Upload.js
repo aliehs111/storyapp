@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import StoryApp from '../assets/StoryApp.png'
+
+const logo = StoryApp 
+
+
 const Upload = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -43,6 +48,15 @@ const Upload = () => {
 
   return (
     <div className="dark:bg-gray-900 dark:text-white flex min-h-full flex-1 flex-col justify-center px-4 py-6 lg:px-4">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img
+          alt="Your Company"
+          src={logo}
+          className="mx-auto h-10 w-auto h-20 w-20"
+        />
+    
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md mt-8">
         <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
           Upload Video

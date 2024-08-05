@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <Disclosure as="nav" className="bg-green-600">
+    <Disclosure as="nav" className="bg-teal-600">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -176,82 +176,82 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 pb-3 pt-2">
-              <Disclosure.Button
-                as={Link}
-                to="/"
-                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
-              >
-                Home
-              </Disclosure.Button>
-              {!isAuthenticated && (
-                <>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/login"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Login
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/register"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Register
-                  </Disclosure.Button>
-                </>
-              )}
-              {isAuthenticated && (
-                <>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/upload"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Upload
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/videos"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Videos
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/meet"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Kenzo & Kohji
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/profile"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    My Profile
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as={Link}
-                    to="/storytellers"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Storytellers
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="button"
-                    onClick={handleLogout}
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                  >
-                    Logout
-                  </Disclosure.Button>
-                </>
-              )}
-            </div>
-          </Disclosure.Panel>
+  <div className="space-y-1 pb-3 pt-2">
+    <Disclosure.Button
+      as={Link}
+      to="/"
+      className="block border-l-4 border-indigo-500 bg-green-600 py-2 pl-3 pr-4 text-base font-medium text-white"
+    >
+      Home
+    </Disclosure.Button>
+    {!isAuthenticated && (
+      <>
+        <Disclosure.Button
+          as={Link}
+          to="/login"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Login
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/register"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Register
+        </Disclosure.Button>
+      </>
+    )}
+    {isAuthenticated && (
+      <>
+        <Disclosure.Button
+          as={Link}
+          to="/upload"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Upload
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/videos"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Videos
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/meet"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Kenzo & Kohji
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/profile"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          My Profile
+        </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/storytellers"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Storytellers
+        </Disclosure.Button>
+        <Disclosure.Button
+          as="button"
+          onClick={handleLogout}
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          Logout
+        </Disclosure.Button>
+      </>
+    )}
+  </div>
+</Disclosure.Panel>
+
         </>
       )}
     </Disclosure>
