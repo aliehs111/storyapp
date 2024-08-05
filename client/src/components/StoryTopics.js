@@ -3,17 +3,20 @@ import axios from 'axios';
 
 import kenzoProfile from '../assets/kenzoProfile.jpeg';
 import kohjihike from '../assets/kohjihike.jpeg';
-import kekozamboni from '../assets/kekozamboni.jpeg';
-import kenzocoffeeshop from '../assets/kenzocoffeeshop.jpeg';
+import kekocool from '../assets/kekocool.jpeg';
+import kenzosailing from '../assets/kenzosailing.jpeg';
 
 import kenzopool from '../assets/kenzopool.jpeg';
 import kohjimustache from '../assets/kohjimustache.jpeg';
+import StoryApp from '../assets/StoryApp.png'
+
+const logo = StoryApp 
 
 
 const bgImage = kenzoProfile;
 const img1 = kohjihike;
-const img2 = kekozamboni;
-const img3 = kenzocoffeeshop;
+const img2 = kekocool;
+const img3 = kenzosailing;
 const img4 = kenzopool;
 const img5 = kohjimustache;
 
@@ -59,7 +62,7 @@ const faqs = [
     },
     {
       id: 7,
-      question: "Tell them about family members who are no longer with us and your special memories of family traditions",
+      question: "Tell them about family members or special friends who are no longer with us and your special memories of family traditions",
       answer:
         "Tell them about their own ancestors if you know about them.  Tell them about your own grandparents and great grandparents and what you remember about them.  Tell them about family traditions that you remember and what made them special.",
     },
@@ -82,10 +85,16 @@ const faqs = [
   return (
     <div className="dark:bg-gray-900 dark:text-white flex min-h-full flex-1 flex-col justify-center px-4 py-6 lg:px-4">
 <div className="bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+<img
+          alt="Your Company"
+          src={logo}
+          className="mx-auto h-10 w-auto h-40 w-40"
+        />
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-10 lg:px-8">
+  
         <h2 className="text-2xl font-bold leading-10 tracking-tight text-white">Story Ideas! Tell Kenzo and Kohji about...</h2>
        
-        <div className="mt-20">
+        <div className="mt-10">
           <dl className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10">
             {faqs.map((faq) => (
               <div key={faq.id}>

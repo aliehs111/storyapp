@@ -11,11 +11,13 @@ import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import kenzoProfile from "../assets/kenzoProfile.jpeg";
 
 import kekohike from "../assets/kekohike.jpeg";
+import StoryApp from "../assets/StoryApp.png";
+
+const logo = StoryApp;
 
 const bgImage = kenzoProfile;
 
 const wideImage = kekohike;
-
 
 const values = [
   {
@@ -59,25 +61,40 @@ const faqs = [
     question: "Can anyone download the videos?",
     answer:
       "Not with this current beta version.  In future development, there will be more features to download the videos and delete them from this platform so to save space in the database for future videos.  You may notice there is a button to download the videos but it's not working on all devices yet.  You can try it if you like.",
-  },{
-    question: "I have an idea to make this app better.  How can I suggest improvements and new features?",
+  },
+  {
+    question:
+      "I have an idea to make this app better.  How can I suggest improvements and new features?",
     answer:
       "Thank you! Please email me at smcgov@11.11@gmail.com with your ideas and suggestions.  I would love to hear from you!  When you contact me about any technical issues, please include which browser, device type and any other technical details of how you are accessing the app.  It should be working on computers, tablets and phones, Mac, Windows, Android and iOS.",
   },
   {
-    question: "I have a potential user who is not comfortable with the tech involved here.  Can I create a separate profile for them?",
+    question:
+      "I have a potential user who is not comfortable with the tech involved here.  Can I create a separate profile for them?",
     answer:
       "Of course!  As long as you have their permission.  You can log in and out of the app as different users.  We may have the best and most interesting contributions from the less tech savy!  And you can also share a special guest video on your own profile.",
   },
   {
-    question: "I'd like to speak to the boys in Tagalog or another language other than English.  Would that be okay?",
+    question:
+      "I'd like to speak to the boys in Tagalog or another language other than English.  Would that be okay?",
     answer:
       "Please do!  In fact, it's exactly the intent of the app to enrich them with their family culture and history.  You can speak in any language you like.  If you are comfortable, you can also include a translation in the video description.",
   },
   {
-    question: "I know another family who would like their own StoryApp.  How can I get this app for another other people?",
+    question:
+      "I know another family who would like their own StoryApp.  How can I get this app for another other people?",
     answer:
       "Working on it!  And you're part of the plan helping with this beta version to test and improve the app.  There will be similar versions for sligtly different circumstances, such as people who are who are in the hospital or nursing home.  The app will be customized for the needs of the users.  There will also be a special occassion limited version coming soon!",
+  },
+  {
+    question: "What is my email being used for?",
+    answer:
+      "Nothing now in this beta version except for signing in and testing the format for the registration.  You will not receive any emails.  In future development there may be features to reach out to users with specific story ideas or to notify users of new video uploads and things like that.  Right now it is just test data and you can actually use a fake email if you want.",
+  },
+  {
+    question: "Can I have this as an app on my phone?",
+    answer:
+      "Yes.  When you are using it with the weblink on your phone or tablet, you can add it to your home screen on your phone.  It will look like an app and you can access it anytime.  Use the feature that you would use to share the link with someone else, then you should see an option to save to your home screen.  In future development, there will be an app available in the app store.",
   },
   // More questions...
 ];
@@ -97,7 +114,7 @@ export default function LearnMore() {
             className="absolute inset-0 -z-20 h-full w-full object-cover object-top"
           />
           {/* Dark Overlay */}
-          <div className="absolute inset-0 -z-10 bg-black/75" />
+          <div className="absolute inset-0 -z-10 bg-black/70" />
 
           {/* <svg
             aria-hidden="true"
@@ -154,14 +171,31 @@ export default function LearnMore() {
                     -- Desiderata, Max Ehrmann
                   </h3>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                  It has been scientifically proven that children who are verbally told stories have higher self-esteem, are more resilient, and have a better understanding of themselves and how they view the world. Studies have even shown that when children listen to stories, their brains actively work to conjure up imagery and consider the emotions of the storyteller and other characters.
+                    It has been scientifically proven that children who are
+                    verbally told stories have higher self-esteem, are more
+                    resilient, and have a better understanding of themselves and
+                    how they view the world. Studies have even shown that when
+                    children listen to stories, their brains actively work to
+                    conjure up imagery and consider the emotions of the
+                    storyteller and other characters.
                   </p>
-                    <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                    In modern life, children often become separated from extended family and friends, missing out on their family's historical and cultural context. The seemingly inconsequential aspects of day-to-day living and sharing thoughts with a child help them truly understand where they come from and the values of their family.
-                    </p>
-                 
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                  Why StoryApp? While the needs of children have not changed, the way the modern world communicates with them has. StoryApp is a way to bridge the gap between the old and the new. It offers a meaningful and lasting way to connect with Kenzo and Kohji by creating a digital treasure chest of stories and thoughts that they can access anytime and eventually share with their own children.
+                    In modern life, children can become detatched from extended
+                    family and friends, missing out on their family's historical
+                    and cultural context. The seemingly inconsequential aspects
+                    of day-to-day living and sharing thoughts with a child help
+                    them truly understand where they come from and the values of
+                    their family.
+                  </p>
+
+                  <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
+                    Why StoryApp? While the needs of children have not changed,
+                    the way the modern world communicates with them has.
+                    StoryApp is a way to bridge the gap between the old and the
+                    new. It offers a meaningful and lasting way to connect with
+                    Kenzo and Kohji by creating a digital treasure chest of
+                    stories and thoughts that they can access anytime and
+                    eventually share with their own children.
                   </p>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
                     Thank you for testing this app and I hope we will all have
@@ -186,14 +220,19 @@ export default function LearnMore() {
         <div className="bg-gray-900">
           <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
             <div className="mx-auto max-w-4xl divide-y divide-white/10">
-              <h2 className="text-2xl font-bold leading-10 tracking-tight text-white">
+              <img
+                alt="Your Company"
+                src={logo}
+                className="mx-auto h-10 w-auto h-40 w-40"
+              />
+              <h2 className="text-2xl font-bold leading-10 tracking-tight text-white mt-8">
                 Frequently asked questions
               </h2>
               <dl className="mt-10 space-y-6 divide-y divide-white/10">
                 {faqs.map((faq) => (
                   <Disclosure key={faq.question} as="div" className="pt-6">
                     <dt>
-                      <DisclosureButton className="group flex w-full items-start justify-between text-left text-white">
+                      <Disclosure.Button className="group flex w-full items-start justify-between text-left bg-teal-600 text-white rounded-md px-4 py-2 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
                         <span className="text-base font-semibold leading-7">
                           {faq.question}
                         </span>
@@ -207,13 +246,13 @@ export default function LearnMore() {
                             className="h-6 w-6 [.group:not([data-open])_&]:hidden"
                           />
                         </span>
-                      </DisclosureButton>
+                      </Disclosure.Button>
                     </dt>
-                    <DisclosurePanel as="dd" className="mt-2 pr-12">
+                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
                       <p className="text-base leading-7 text-gray-300">
                         {faq.answer}
                       </p>
-                    </DisclosurePanel>
+                    </Disclosure.Panel>
                   </Disclosure>
                 ))}
               </dl>
@@ -222,7 +261,7 @@ export default function LearnMore() {
         </div>
 
         {/* Image section */}
-        <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
+        <div className="mt-10 sm:mt-10 xl:mx-auto xl:max-w-7xl xl:px-8">
           <img
             alt=""
             src={wideImage}
@@ -231,7 +270,8 @@ export default function LearnMore() {
         </div>
 
         {/* Values section */}
-        <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8">
+        
+        <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8 mb-8 ">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               C'mon! What are you waiting for? Tell them a Story!
@@ -243,15 +283,22 @@ export default function LearnMore() {
               >
                 Get started
               </a>
-              <a href="storytopics" className="text-sm font-semibold leading-6 text-black">
+              <a
+                href="storytopics"
+                className="text-sm font-semibold leading-6 text-black"
+              >
                 Story Ideas <span aria-hidden="true">→</span>
               </a>
             </div>
-          
+
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              It doesn't have to be an exciting story, just anything about your day, or a memory of your grandparents, or about your pets or your recent trip to the grocery store.  The point is that the boys know you took the time and shared a piece of your life, whether that is the mundane or the fantastic.  Be sure to check out the story ideas page if you need some inspiration.
+              It doesn't have to be an exciting story, just anything about your
+              day, or a memory of your grandparents, or about your pets or your
+              recent trip to the grocery store. The point is that the boys know
+              you took the time and shared a piece of your life, whether that is
+              the mundane or the fantastic. Be sure to check out the story ideas
+              page if you need some inspiration.
             </p>
-          
           </div>
           <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {values.map((value) => (
