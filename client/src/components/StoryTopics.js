@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import kenzoProfile from '../assets/kenzoProfile.jpeg';
 import kohjihike from '../assets/kohjihike.jpeg';
-import kekocool from '../assets/kekocool.jpeg';
+import kekoipad from '../assets/kekoipad.jpeg';
 import kenzosailing from '../assets/kenzosailing.jpeg';
 
-import kenzopool from '../assets/kenzopool.jpeg';
+import kenzohockey from '../assets/kenzohockey.jpeg';
 import kohjimustache from '../assets/kohjimustache.jpeg';
 import StoryApp from '../assets/StoryApp.png'
 
@@ -15,9 +15,9 @@ const logo = StoryApp
 
 const bgImage = kenzoProfile;
 const img1 = kohjihike;
-const img2 = kekocool;
+const img2 = kekoipad;
 const img3 = kenzosailing;
-const img4 = kenzopool;
+const img4 = kenzohockey;
 const img5 = kohjimustache;
 
 
@@ -78,6 +78,24 @@ const faqs = [
         answer:
           "Are you taking your pet for a walk?  Maybe you're going to the mall or the grocery store.  Show the boys a little bit of your environment so they can see what you're up to!",
       },
+      {
+        id: 10,
+        question: "Do you remember the day each one of them was born?",
+        answer:
+          "What were you doing that day?  How did you finally hear they were born?  When is the first time you laid eyes on them?  What did they look like when they were born?",
+      },
+      {
+        id: 11,
+        question: "Do you remember the day each one of them was born?",
+        answer:
+          "What were you doing that day?  How did you finally hear they were born?  When is the first time you laid eyes on them?  What did they look like when they were born?",
+      },
+      {
+        id: 12,
+        question: "Food Videos!",
+        answer:
+          "So many topics on food!  Are you cooking something special?  What food did you like best when you were a kid?  What food do you like now?  What food do you not like?",
+      },
 
   ]
   
@@ -92,7 +110,7 @@ const faqs = [
         />
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-10 lg:px-8">
   
-        <h2 className="text-2xl font-bold leading-10 tracking-tight text-white">Story Ideas! Tell Kenzo and Kohji about...</h2>
+        <h2 className="text-2xl font-bold leading-10 tracking-tight text-white">Here's some topics to give you some ideas...</h2>
        
         <div className="mt-10">
           <dl className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10">

@@ -76,7 +76,7 @@ const faqs = [
   },
   {
     question:
-      "I'd like to speak to the boys in Tagalog or another language other than English.  Would that be okay?",
+      "I'd like to speak to the boys in a language other than English.  Would that be okay?",
     answer:
       "Please do!  In fact, it's exactly the intent of the app to enrich them with their family culture and history.  You can speak in any language you like.  If you are comfortable, you can also include a translation in the video description.",
   },
@@ -180,12 +180,13 @@ export default function LearnMore() {
                     storyteller and other characters.
                   </p>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                    In modern life, children can become detatched from extended
-                    family and friends, missing out on their family's historical
-                    and cultural context. The seemingly inconsequential aspects
-                    of day-to-day living and sharing thoughts with a child help
-                    them truly understand where they come from and the values of
-                    their family.
+                    In our modern world, children can easily become less in tune
+                    with their extended family and friends, becoming unaware of all their
+                    family's historical and cultural context. It's the seemingly
+                    inconsequential aspects of day-to-day living and sharing
+                    thoughts and memories with a child that can help them truly
+                    understand where they come from and the values of their
+                    family.
                   </p>
 
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
@@ -270,7 +271,7 @@ export default function LearnMore() {
         </div>
 
         {/* Values section */}
-        
+
         <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8 mb-8 ">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

@@ -15,6 +15,7 @@ import AllProfiles from './components/AllProfiles';
 import StoryTopics from './components/StoryTopics';
 import LearnMore from './components/LearnMore';
 import Footer from './components/Footer'; // Import Footer component
+import BackToTopButton from './components/BackToTopButton';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
           </Routes>
         </div>
         <Footer /> 
+        <BackToTopButton />
       </div>
     </Router>
   );

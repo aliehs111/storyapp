@@ -105,16 +105,16 @@ const ProfileForm = () => {
               <p>I am most happy when {user.answer_two}</p>
             )}
             {user.answer_three && (
-              <p>According to {user.username} when hearing stories {user.answer_three}</p>
+              <p>When {user.username} hears people's stories he says {user.answer_three}</p>
             )}
             {user.answer_four && (
-              <p>Some of my favorite books are {user.answer_four}</p>
+              <p>Some of {user.username}'s favorite books are {user.answer_four}</p>
             )}
             {user.answer_five && (
               <p>In {user.username}'s opinion the world is {user.answer_five}</p>
             )}
             {user.answer_six && (
-              <p>My favorite foods are {user.answer_six}</p>
+              <p>{user.username}'s favorite foods are {user.answer_six}</p>
             )}
           </div>
         </div>
