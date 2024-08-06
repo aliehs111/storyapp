@@ -86,9 +86,9 @@ const faqs = [
       },
       {
         id: 11,
-        question: "Do you remember the day each one of them was born?",
+        question: "What is your favorite season or holiday?",
         answer:
-          "What were you doing that day?  How did you finally hear they were born?  When is the first time you laid eyes on them?  What did they look like when they were born?",
+          "Are you a big fan of summer?  Do you love Christmas?  Why are some of these seasons or holidays special for you?  Share some memories of these holidays or seasons from when you were little!",
       },
       {
         id: 12,
@@ -106,7 +106,7 @@ const faqs = [
 <img
           alt="Your Company"
           src={logo}
-          className="mx-auto h-10 w-auto h-40 w-40"
+          className="mx-auto h-40 w-auto rounded-md"
         />
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-10 lg:px-8">
   

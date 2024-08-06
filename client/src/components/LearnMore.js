@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     question:
-      "I have a potential user who is not comfortable with the tech involved here.  Can I create a separate profile for them?",
+      "I know a potential user who is not comfortable with the tech involved here.  Can I create a separate profile for them?",
     answer:
       "Of course!  As long as you have their permission.  You can log in and out of the app as different users.  We may have the best and most interesting contributions from the less tech savy!  And you can also share a special guest video on your own profile.",
   },
@@ -166,7 +166,7 @@ export default function LearnMore() {
                     You are a child of the universe, no less than the trees and
                     the stars; you have a right to be here.
                   </h1>
-                  <h3 className="text-xl tracking-tight text-right text-slate-400 sm:text-xl text-opacity-70">
+                  <h3 className="text-lg tracking-tight text-right text-slate-400 sm:text-lg text-opacity-70">
                     {" "}
                     -- Desiderata, Max Ehrmann
                   </h3>
@@ -219,47 +219,48 @@ export default function LearnMore() {
         </div>
 
         <div className="bg-gray-900">
-          <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
-            <div className="mx-auto max-w-4xl divide-y divide-white/10">
-              <img
-                alt="Your Company"
-                src={logo}
-                className="mx-auto h-10 w-auto h-40 w-40"
-              />
-              <h2 className="text-2xl font-bold leading-10 tracking-tight text-white mt-8">
-                Frequently asked questions
-              </h2>
-              <dl className="mt-10 space-y-6 divide-y divide-white/10">
-                {faqs.map((faq) => (
-                  <Disclosure key={faq.question} as="div" className="pt-6">
-                    <dt>
-                      <Disclosure.Button className="group flex w-full items-start justify-between text-left bg-teal-600 text-white rounded-md px-4 py-2 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                        <span className="text-base font-semibold leading-7">
-                          {faq.question}
-                        </span>
-                        <span className="ml-6 flex h-7 items-center">
-                          <PlusSmallIcon
-                            aria-hidden="true"
-                            className="h-6 w-6 group-data-[open]:hidden"
-                          />
-                          <MinusSmallIcon
-                            aria-hidden="true"
-                            className="h-6 w-6 [.group:not([data-open])_&]:hidden"
-                          />
-                        </span>
-                      </Disclosure.Button>
-                    </dt>
-                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                      <p className="text-base leading-7 text-gray-300">
-                        {faq.answer}
-                      </p>
-                    </Disclosure.Panel>
-                  </Disclosure>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </div>
+  <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-20">
+    <div className="mx-auto max-w-4xl divide-y divide-white/10">
+      <img
+        alt="Your Company"
+        src={logo}
+        className="mx-auto h-34 w-auto rounded-md" // Increase height and adjust width accordingly
+      />
+      <h2 className="text-2xl font-bold leading-10 tracking-tight text-white mt-8">
+        Frequently asked questions
+      </h2>
+      <dl className="mt-10 space-y-6 divide-y divide-white/10">
+        {faqs.map((faq) => (
+          <Disclosure key={faq.question} as="div" className="pt-6">
+            <dt>
+              <Disclosure.Button className="group flex w-full items-start justify-between text-left bg-teal-600 text-white rounded-md px-4 py-2 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                <span className="text-base font-semibold leading-7">
+                  {faq.question}
+                </span>
+                <span className="ml-6 flex h-7 items-center">
+                  <PlusSmallIcon
+                    aria-hidden="true"
+                    className="h-6 w-6 group-data-[open]:hidden"
+                  />
+                  <MinusSmallIcon
+                    aria-hidden="true"
+                    className="h-6 w-6 [.group:not([data-open])_&]:hidden"
+                  />
+                </span>
+              </Disclosure.Button>
+            </dt>
+            <Disclosure.Panel as="dd" className="mt-2 pr-12">
+              <p className="text-base leading-7 text-gray-300">
+                {faq.answer}
+              </p>
+            </Disclosure.Panel>
+          </Disclosure>
+        ))}
+      </dl>
+    </div>
+  </div>
+</div>
+
 
         {/* Image section */}
         <div className="mt-10 sm:mt-10 xl:mx-auto xl:max-w-7xl xl:px-8">
@@ -272,7 +273,7 @@ export default function LearnMore() {
 
         {/* Values section */}
 
-        <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8 mb-8 ">
+        <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-20 lg:px-8 pb-8 ">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               C'mon! What are you waiting for? Tell them a Story!
@@ -284,12 +285,7 @@ export default function LearnMore() {
               >
                 Get started
               </a>
-              <a
-                href="storytopics"
-                className="text-sm font-semibold leading-6 text-black"
-              >
-                Story Ideas <span aria-hidden="true">→</span>
-              </a>
+             
             </div>
 
             <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -298,7 +294,7 @@ export default function LearnMore() {
               recent trip to the grocery store. The point is that the boys know
               you took the time and shared a piece of your life, whether that is
               the mundane or the fantastic. Be sure to check out the story ideas
-              page if you need some inspiration.
+              page if you need some inspiration.  That will be available once you're logged in.
             </p>
           </div>
           <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">

@@ -54,7 +54,7 @@ const Upload = () => {
         <img
           alt="Your Company"
           src={logo}
-          className="mx-auto h-10 w-auto h-20 w-20"
+          className="mx-auto h-32 w-auto rounded-md"
         />
       </div>
 
