@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import StoryApp from '../assets/StoryApp.png';
 
-import StoryApp from '../assets/StoryApp.png'
-
-const logo = StoryApp 
-
+const logo = StoryApp;
 
 const Upload = () => {
   const [title, setTitle] = useState("");
@@ -12,24 +10,27 @@ const Upload = () => {
   const [video, setVideo] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false); // New state for loading
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
     formData.append("video", video);
 
     try {
-      const token = localStorage.getItem("token"); // Assuming token is stored in localStorage after login
-      console.log("Token used for upload:", token); // Add this line for debugging
+      const token = localStorage.getItem("token");
+      console.log("Token used for upload:", token);
+
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/videos/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       console.log("Video uploaded successfully", response.data);
       setSuccess("Video uploaded successfully");
       setError(null); // Clear any previous errors
@@ -41,8 +42,9 @@ const Upload = () => {
         }`
       );
       setSuccess(null); // Clear any previous success message
-      // Log the full error response for debugging
       console.log("Full error response:", error.response);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -54,7 +56,6 @@ const Upload = () => {
           src={logo}
           className="mx-auto h-10 w-auto h-20 w-20"
         />
-    
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md mt-8">
@@ -120,12 +121,40 @@ const Upload = () => {
             </div>
           </div>
           <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Upload
-            </button>
+            {loading ? (
+              <button
+                type="button"
+                className="flex items-center justify-center w-full rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
+                disabled
+              >
+                <svg
+                  className="animate-spin h-5 w-5 mr-3 text-white"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C6.477 0 2 4.477 2 10h2zm2 5.291A7.962 7.962 0 014 12H2c0 3.042 1.135 5.824 3 7.938l1-1.647z"
+                  />
+                </svg>
+                Processing...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Upload
+              </button>
+            )}
           </div>
         </form>
       </div>
@@ -134,3 +163,4 @@ const Upload = () => {
 };
 
 export default Upload;
+

@@ -171,19 +171,19 @@ export default function LearnMore() {
                     -- Desiderata, Max Ehrmann
                   </h3>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
-                    It has been scientifically proven that children who are
-                    verbally told stories have higher self-esteem, are more
-                    resilient, and have a better understanding of themselves and
-                    how they view the world. Studies have even shown that when
-                    children listen to stories, their brains actively work to
-                    conjure up imagery and consider the emotions of the
-                    storyteller and other characters.
+                    It has been scientifically proven that children who are told
+                    stories have higher self-esteem, are more resilient, and
+                    have a better understanding of themselves and how they view
+                    the world. Studies have even shown that when children listen
+                    to stories, their brains actively work to conjure up imagery
+                    and consider the emotions of the storyteller and other
+                    characters.
                   </p>
                   <p className="relative mt-6 text-lg leading-8 sm:max-w-md lg:max-w-none">
                     In our modern world, children can easily become less in tune
-                    with their extended family and friends, becoming unaware of all their
-                    family's historical and cultural context. It's the seemingly
-                    inconsequential aspects of day-to-day living and sharing
+                    with their extended family, becoming unaware of all their
+                    family's historic and cultural context. It's the seemingly
+                    inconsequential aspects of day-to-day living while sharing
                     thoughts and memories with a child that can help them truly
                     understand where they come from and the values of their
                     family.

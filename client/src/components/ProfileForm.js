@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
-import { FaInstagram, FaGithub } from 'react-icons/fa';
 
 const ProfileForm = () => {
   const { token, user } = useContext(AuthContext);
@@ -68,7 +67,6 @@ const ProfileForm = () => {
 
       if (response.status === 200) {
         setSuccess('Profile updated successfully!');
-        const updatedProfile = response.data;
         setFormData({
           ...formData,
           profile_picture: '',
@@ -83,6 +81,10 @@ const ProfileForm = () => {
     }
   };
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   if (!user) {
     return <div className="text-center text-white">Loading...</div>;
   }
@@ -92,35 +94,42 @@ const ProfileForm = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <div className="mx-auto max-w-2xl">
           <img
-            alt={user.username}
+            alt={user.username || 'User Profile'}
             src={user.profile_picture || 'https://via.placeholder.com/150'}
             className="h-48 w-48 rounded-full object-cover shadow-lg border-4 border-gray-800 md:h-56 md:w-56 mx-auto"
           />
-          <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">{user.username}</h2>
+          <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">{user.username || 'User'}</h2>
           <div className="mt-6 text-lg leading-8 text-gray-400">
             {user.answer_one && (
-              <p>I am {user.username} and I like {user.answer_one}</p>
+              <p>{user.answer_one} is something I enjoy doing.</p>
             )}
             {user.answer_two && (
-              <p>I am most happy when {user.answer_two}</p>
+              <p>Happiness often comes from {user.answer_two}.</p>
             )}
             {user.answer_three && (
-              <p>When {user.username} hears people's stories he says {user.answer_three}</p>
+              <p>I find stories to be {user.answer_three}.</p>
             )}
             {user.answer_four && (
-              <p>Some of {user.username}'s favorite books are {user.answer_four}</p>
+              <p>A few favorites among books are {user.answer_four}.</p>
             )}
             {user.answer_five && (
-              <p>In {user.username}'s opinion the world is {user.answer_five}</p>
+              <p>The world, to me, feels {user.answer_five}.</p>
             )}
             {user.answer_six && (
-              <p>{user.username}'s favorite foods are {user.answer_six}</p>
+              <p>A beloved food is {user.answer_six}.</p>
             )}
           </div>
+          <button
+          onClick={handleRefresh}
+          className="mt-4 mb-6 inline-block rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          See Your Updated Profile
+        </button>
         </div>
       </div>
       <div className="bg-gray-900 py-24 px-20 sm:py-32">
         <h1 className="text-3xl font-bold text-white">Update Profile</h1>
+     
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">Username</label>
@@ -165,21 +174,8 @@ const ProfileForm = () => {
             </div>
           </div>
 
-          {/* <div>
-            <label htmlFor="artwork_picture" className="block text-sm font-medium leading-6 text-white">Artwork Picture</label>
-            <div className="mt-2">
-              <input
-                id="artwork_picture"
-                name="artwork_picture"
-                type="file"
-                onChange={handleFileChange}
-                className="block w-full text-white"
-              />
-            </div>
-          </div> */}
-
           <div>
-            <label htmlFor="answer_one" className="block text-sm font-medium leading-6 text-white">What are some things you like to do?</label>
+            <label htmlFor="answer_one" className="block text-sm font-medium leading-6 text-white">What are some activities you enjoy?</label>
             <div className="mt-2">
               <input
                 id="answer_one"
@@ -193,7 +189,7 @@ const ProfileForm = () => {
           </div>
 
           <div>
-            <label htmlFor="answer_two" className="block text-sm font-medium leading-6 text-white">What makes you happy?</label>
+            <label htmlFor="answer_two" className="block text-sm font-medium leading-6 text-white">What makes you happiest?</label>
             <div className="mt-2">
               <input
                 id="answer_two"
@@ -235,7 +231,7 @@ const ProfileForm = () => {
           </div>
 
           <div>
-            <label htmlFor="answer_five" className="block text-sm font-medium leading-6 text-white">How Big is the World?</label>
+            <label htmlFor="answer_five" className="block text-sm font-medium leading-6 text-white">How would you describe the world?</label>
             <div className="mt-2">
               <input
                 id="answer_five"
@@ -249,7 +245,7 @@ const ProfileForm = () => {
           </div>
 
           <div>
-            <label htmlFor="answer_six" className="block text-sm font-medium leading-6 text-white">What is your favorite food?</label>
+            <label htmlFor="answer_six" className="block text-sm font-medium leading-6 text-white">What is one of your favorite foods?</label>
             <div className="mt-2">
               <input
                 id="answer_six"
@@ -280,3 +276,4 @@ const ProfileForm = () => {
 };
 
 export default ProfileForm;
+

@@ -26,11 +26,13 @@ const Navbar = () => {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    alt="Your Company"
-                    src={logo}
-                    className="h-20 w-20"
-                  />
+                  <Link to="/"> {/* Wrap the img element with a Link component */}
+                    <img
+                      alt="Your Company"
+                      src={logo}
+                      className="h-20 w-20"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <Link
@@ -52,6 +54,12 @@ const Navbar = () => {
                         className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                       >
                         Register
+                      </Link>
+                      <Link
+                        to="/learn"
+                        className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
+                      >
+                        About
                       </Link>
                     </>
                   )}
@@ -92,6 +100,12 @@ const Navbar = () => {
                         className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                       >
                         Storytellers
+                      </Link>
+                      <Link
+                        to="/learn"
+                        className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
+                      >
+                        About
                       </Link>
                     </>
                   )}
@@ -201,6 +215,13 @@ const Navbar = () => {
         >
           Register
         </Disclosure.Button>
+        <Disclosure.Button
+          as={Link}
+          to="/learn"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          About
+        </Disclosure.Button>
       </>
     )}
     {isAuthenticated && (
@@ -249,12 +270,20 @@ const Navbar = () => {
           Storytellers
         </Disclosure.Button>
         <Disclosure.Button
+          as={Link}
+          to="/learn"
+          className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+        >
+          About 
+          </Disclosure.Button>
+        <Disclosure.Button
           as="button"
           onClick={handleLogout}
           className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
         >
           Logout
         </Disclosure.Button>
+        
       </>
     )}
   </div>

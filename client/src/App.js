@@ -36,6 +36,7 @@ const App = () => {
               <Route path="/profile" element={<ProfileForm />} /> {/* Add profile route*/}
               <Route path="/storytellers" element={<AllProfiles />} /> 
               <Route path="/storytopics" element={<StoryTopics />} />
+              <Route path="learn" element={<LearnMore />} />
             </Route>
           </Routes>
         </div>
