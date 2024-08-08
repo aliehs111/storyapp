@@ -72,9 +72,16 @@ app.get('/', (req, res) => {
 
 // Connect to the database and start the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(port, () => {
+  // Define server here
+  const server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
+
+  // Set server timeout to 10 minutes
+  server.timeout = 10 * 60 * 1000; // 10 minutes in milliseconds
+
 }).catch((err) => {
   console.error('Unable to connect to the database:', err);
 });
+
+
