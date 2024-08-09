@@ -5,10 +5,8 @@ const cloudinary = require('cloudinary').v2;
 const { Video, User } = require('../models');
 const authenticateJWT = require('../middlewares/authMiddleware');
 const router = express.Router();
-const ffmpeg = require('fluent-ffmpeg');
-const fs = require('fs');
 const path = require('path');
-const videoQueue = require('./jobs/videoQueue');
+const videoQueue = require('./jobs/videoQueue'); // Path to your Bull queue job
 
 // Cloudinary configuration
 cloudinary.config({
@@ -36,72 +34,23 @@ router.post('/upload', authenticateJWT, upload.single('video'), async (req, res)
     const inputPath = req.file.path;
     const outputPath = path.join('uploads', `${Date.now()}-${req.file.originalname.split('.')[0]}.mp4`);
 
-    // Convert video to a more compatible format using FFmpeg
-    ffmpeg(inputPath)
-      .output(outputPath)
-      .videoCodec('libx264') // Convert to H.264
-      .format('mp4')
-      .on('end', async () => {
-        console.log('Conversion finished');
+    // Add video processing job to the queue
+    videoQueue.add({
+      inputPath,
+      outputPath,
+      userId: req.user.id,
+      title,
+      description,
+    });
 
-        // Upload converted video to Cloudinary
-        cloudinary.uploader.upload(outputPath, {
-          resource_type: 'video',
-          public_id: req.file.originalname.replace(/\s+/g, '_').split('.')[0],
-          folder: 'storyapp',
-          format: 'mp4'
-        }, async (error, result) => {
-          if (error) {
-            console.error('Error uploading to Cloudinary:', error);
-            return res.status(500).json({ error: 'Failed to upload video to Cloudinary' });
-          }
-
-          // Create video record in the database
-          const video = await Video.create({
-            user_id: req.user.id,
-            title,
-            description,
-            file_path: result.secure_url,
-            thumbnail_path: '', // Set initially to empty string
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          });
-
-          // Request Cloudinary to generate a thumbnail from the uploaded video
-          const thumbnail_url = cloudinary.url(result.public_id, {
-            transformation: [
-              { width: 300, height: 200, crop: 'thumb', gravity: 'center' },
-            ],
-            format: 'jpg',
-            resource_type: 'video', // Change to video
-            secure: true,
-          });
-
-          console.log('Thumbnail URL:', thumbnail_url);
-
-          // Update video record with the generated thumbnail URL
-          video.thumbnail_path = thumbnail_url;
-          await video.save();
-
-          // Clean up temporary files
-          fs.unlinkSync(inputPath);
-          fs.unlinkSync(outputPath);
-
-          res.json({ message: 'Video uploaded and converted successfully', video });
-        });
-      })
-      .on('error', (err) => {
-        console.error('Error during conversion:', err);
-        res.status(500).json({ error: 'Error during video conversion', details: err.message });
-        // Clean up temporary file
-        fs.unlinkSync(inputPath);
-      })
-      .run();
+    // Respond immediately to the client
+    res.json({ message: 'Video upload initiated and processing job added to the queue' });
   } catch (error) {
     console.error('Error uploading video:', error);
     res.status(500).json({ error: 'Failed to upload video', details: error.message });
   }
 });
+
 // GET /api/videos - Fetch all videos with associated user data
 router.get('/', authenticateJWT, async (req, res) => {
   try {
@@ -213,4 +162,5 @@ router.get('/data/size', authenticateJWT, async (req, res) => {
 });
 
 module.exports = router;
+
 
