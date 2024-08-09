@@ -8,6 +8,7 @@ const router = express.Router();
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const path = require('path');
+const videoQueue = require('./jobs/videoQueue');
 
 // Cloudinary configuration
 cloudinary.config({

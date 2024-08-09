@@ -70,6 +70,12 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Story App!');
 });
 
+// ** Error-handling middleware goes here ** 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 // Connect to the database and start the server
 sequelize.sync({ force: false }).then(() => {
   // Define server here
