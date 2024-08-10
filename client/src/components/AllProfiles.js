@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaInstagram, FaGithub } from 'react-icons/fa';
+import UserSearchDropdown from './UserSearchDropdown'; // Import the new component
 
 const AllProfiles = () => {
   const [users, setUsers] = useState([]);
@@ -15,8 +16,9 @@ const AllProfiles = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('Response:', response);
-        setUsers(response.data);
+        // Sort users by username alphabetically
+        const sortedUsers = response.data.sort((a, b) => a.username.localeCompare(b.username));
+        setUsers(sortedUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -31,8 +33,10 @@ const AllProfiles = () => {
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Storytellers</h2>
           <p className="mt-4 text-lg leading-8 text-gray-400">
-            Meet the storytellers who are sharing their amazing stories!
+            Alphabetically by Username
           </p>
+          {/* Add UserSearchDropdown here */}
+          <UserSearchDropdown />
         </div>
         <div className="mt-20 overflow-x-auto">
           <ul role="list" className="flex gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:flex-none">
@@ -72,3 +76,5 @@ const AllProfiles = () => {
 };
 
 export default AllProfiles;
+
+

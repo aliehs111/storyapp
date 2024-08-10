@@ -20,12 +20,15 @@ const AllVideos = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setVideos(response.data);
+  
+        // Sort videos by createdAt in descending order (newest first)
+        const sortedVideos = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setVideos(sortedVideos);
       } catch (error) {
         console.error('Error fetching videos:', error);
       }
     };
-
+  
     const fetchDataSize = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -39,11 +42,10 @@ const AllVideos = () => {
         console.error('Error fetching data size:', error);
       }
     };
-
+  
     fetchVideos();
     fetchDataSize();
   }, []);
-
   const formatSize = (size) => {
     if (size < 1024) return `${size} B`;
     if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
@@ -88,7 +90,7 @@ const AllVideos = () => {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">All Videos</h2>
           <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            Enjoy a variety of stories and experiences shared by our community.
+            Newest first
           </p>
           <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
             Total Data Size: {formatSize(totalSize)}
